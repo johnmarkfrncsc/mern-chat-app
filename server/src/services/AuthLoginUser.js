@@ -1,25 +1,6 @@
-import { hashPassword, comparePassword } from "../utils/hashPassword.js";
+import { comparePassword } from "../utils/hashPassword.js";
 import { generateToken } from "../utils/JwtToken.js";
 import UserModel from "../models/UserModel.js";
-
-const registerUser = async (username, email, password) => {
-  try {
-    const existingUser = await UserModel.findOne({ email });
-    if (existingUser) {
-      throw Error("Email already exists");
-    }
-    const hashed = await hashPassword(password);
-    const newUser = await UserModel.create({
-      username,
-      email,
-      password: hashed,
-    });
-
-    return newUser;
-  } catch (error) {
-    throw error;
-  }
-};
 
 const loginUser = async (email, password) => {
   try {
@@ -39,4 +20,4 @@ const loginUser = async (email, password) => {
   }
 };
 
-export { registerUser, loginUser };
+export default loginUser;
