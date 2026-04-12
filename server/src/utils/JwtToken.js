@@ -13,4 +13,4 @@ const verifyToken = (token) => {
   return decode;
 };
 
-export default { generateToken, verifyToken };
+export { generateToken, verifyToken };
