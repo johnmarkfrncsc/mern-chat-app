@@ -1,4 +1,4 @@
-import loginUser from "../services/AuthLoginUser.js";
+import loginUser from "../services/User/AuthLoginUser.js";
 
 const loginController = async (req, res) => {
   try {
