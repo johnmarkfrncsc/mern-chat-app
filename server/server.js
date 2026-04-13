@@ -11,14 +11,19 @@ dotenv.config();
 // port
 const PORT = process.env.PORT || 8080;
 
+// server
 const server = http.createServer(app);
 
+// io
 const io = createSocketServer(server);
 registerSocketEvents(io);
 
+//connect to db
 connectMONGODB()
   .then(() => {
-    server.listen(PORT);
+    server.listen(PORT, () => {
+      console.log(`Server running on http://localhost:${PORT}`);
+    });
   })
   .catch((error) => {
     console.log(error);
