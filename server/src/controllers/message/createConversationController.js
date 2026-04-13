@@ -2,7 +2,8 @@ import createConversation from "../../services/message/createConversation.js";
 
 const createConversationController = async (req, res) => {
   try {
-    const senderId = req.user._id;
+    console.log("req.user:", req.user);
+    const senderId = req.user.id;
     const receiverId = req.params.id;
     const newConversation = await createConversation(senderId, receiverId);
     return res.status(201).json({
