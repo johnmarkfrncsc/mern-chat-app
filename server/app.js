@@ -2,7 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectMONGODB from "./src/config/db.js";
-import router from "./src/routes/AuthRoutes.js";
+import AuthRoutes from "./src/routes/AuthRoutes.js";
+import MessageRoutes from "./src/routes/MessageRoutes.js";
 
 // declare dotenv config
 dotenv.config();
@@ -14,7 +15,8 @@ app.use(cors());
 app.use(express.json());
 
 //route
-app.use("/api/auth", router);
+app.use("/api/auth", AuthRoutes);
+app.use("/api/message", MessageRoutes);
 
 //connect mongodb then start the server
 connectMONGODB()
