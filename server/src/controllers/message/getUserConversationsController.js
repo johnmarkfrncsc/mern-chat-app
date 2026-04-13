@@ -6,12 +6,12 @@ const getUserConversationsController = async (req, res) => {
     const getUserConvo = await getUserConversation(userId);
     return res.status(200).json({
       data: getUserConvo,
-      message: "Successfully get user conversation",
+      message: "Conversations fetched successfully",
     });
   } catch (error) {
     return res.status(500).json({
       data: null,
-      message: error.message,
+      message: "Failed to fetch conversations",
     });
   }
 };

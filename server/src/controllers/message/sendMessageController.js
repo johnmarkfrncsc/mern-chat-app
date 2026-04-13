@@ -9,12 +9,12 @@ const sendMessageController = async (req, res) => {
     const newSendMessage = await sendMessage(conversationId, senderId, text);
     return res.status(201).json({
       data: newSendMessage,
-      message: "Successfully send a message",
+      message: "Message sent successfully",
     });
   } catch (error) {
     return res.status(500).json({
       data: null,
-      message: error.message,
+      message: "Failed to send message",
     });
   }
 };

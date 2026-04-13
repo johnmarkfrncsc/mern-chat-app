@@ -7,12 +7,12 @@ const getMessageController = async (req, res) => {
 
     return res.status(200).json({
       data: newGetMessage,
-      message: "Successfully get the message",
+      message: "Messages fetched successfully",
     });
   } catch (error) {
     return res.status(500).json({
       data: null,
-      message: error.message,
+      message: "Failed to fetch messages",
     });
   }
 };
