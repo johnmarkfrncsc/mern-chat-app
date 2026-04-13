@@ -1,6 +1,6 @@
-import { comparePassword } from "../utils/hashPassword.js";
-import { generateToken } from "../utils/JwtToken.js";
-import UserModel from "../models/UserModel.js";
+import { comparePassword } from "../../utils/hashPassword.js";
+import { generateToken } from "../../utils/JwtToken.js";
+import UserModel from "../../models/UserModel.js";
 
 const loginUser = async (email, password) => {
   try {
