@@ -1,6 +1,6 @@
 import getUserConversation from "../../services/message/getUserConversation.js";
 
-const getUserConversationController = async (req, res) => {
+const getUserConversationsController = async (req, res) => {
   try {
     const userId = req.user._id;
     const getUserConvo = await getUserConversation(userId);
@@ -16,4 +16,4 @@ const getUserConversationController = async (req, res) => {
   }
 };
 
-export default getUserConversationController;
+export default getUserConversationsController;
