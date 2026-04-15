@@ -12,7 +12,7 @@ const MessageList = ({ messages }) => {
   return (
     <div className="flex flex-col gap-2 p-4">
       {messages.map((message) => {
-        const isOwn = message.sender._id === user?.id;
+        const isOwn = message.sender._id === user?._id;
 
         return (
           <div
@@ -20,13 +20,15 @@ const MessageList = ({ messages }) => {
             className={`flex ${isOwn ? "justify-end" : "justify-start"}`}
           >
             <div
-              className={`max-w-xs px-4 py-2 rounded-lg shadow text-sm ${
-                isOwn ? "bg-green-200 text-right" : "bg-white border text-left"
+              className={`max-w-xs px-4 py-1.5 rounded-lg shadow text-sm ${
+                isOwn
+                  ? "bg-green-500 text-right text-white"
+                  : "bg-gray-600 text-left text-white"
               }`}
             >
               {/* Username (only for received messages) */}
               {!isOwn && (
-                <div className="text-xs font-semibold text-gray-600 mb-1">
+                <div className="text-xs font-semibold text-gray-200 mb-1">
                   {message.sender.username}
                 </div>
               )}
@@ -35,7 +37,7 @@ const MessageList = ({ messages }) => {
               <div>{message.text}</div>
 
               {/* Time */}
-              <div className="text-[10px] text-gray-500 mt-1 text-right">
+              <div className="text-[10px] text-gray-200 mt-1 text-right">
                 {new Date(message.createdAt).toLocaleTimeString([], {
                   hour: "2-digit",
                   minute: "2-digit",

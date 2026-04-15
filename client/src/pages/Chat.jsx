@@ -1,18 +1,26 @@
+import ChatBox from "../components/chat/ChatBox.jsx";
 import ConversationList from "../components/chat/ConversationList.jsx";
+import { useState } from "react";
 
 const Chat = () => {
+  const [selectedConversationId, setSelectedConversationId] = useState(null);
   return (
-    <div className="min-h-screen  flex">
-      <ConversationList />
-      <div className="w-full bg-[#050A1A]">
-        <nav className="border-b-gray-500 border p-4 gap-2 flex items-center ">
-          <div className="h-3 w-3 bg-green-500 rounded-2xl" />
-          <h3 className="text-white text-lg">Alex Rivera</h3>
+    <div className="h-screen flex overflow-hidden">
+      <ConversationList setSelectedConversationId={setSelectedConversationId} />
+
+      <div className="flex flex-col flex-1 bg-[#050A1A]">
+        {/* Header */}
+        <nav className="border-b border-gray-700 p-4 flex items-center">
+          <div className="h-3 w-3 bg-green-500 rounded-full mr-2" />
+          <h3 className="text-white text-lg">
+            Alex Rivera {/*PLACE HOLDER LANG ITO HAAA*/}
+          </h3>
         </nav>
 
-        <main>
-          <div></div>
-        </main>
+        {/* Chat area */}
+        <div className="flex-1 overflow-hidden">
+          <ChatBox conversationId={selectedConversationId} />
+        </div>
       </div>
     </div>
   );
