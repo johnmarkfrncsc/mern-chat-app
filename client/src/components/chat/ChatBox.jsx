@@ -62,7 +62,7 @@ const ChatBox = ({ conversationId, senderId }) => {
       </div>
 
       {/* Input */}
-      <div className="border-t p-2">
+      <div className="pt-2 ">
         <MessageInput onSend={handleSend} />
       </div>
     </div>
