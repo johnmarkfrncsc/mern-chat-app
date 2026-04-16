@@ -12,7 +12,11 @@ const sendMessage = async (conversationId, senderId, text) => {
       $set: { lastMessage: newMessage._id },
     });
 
-    return newMessage;
+    const populatedMessage = await MessageModel.findById(
+      newMessage._id,
+    ).populate("sender", "username");
+
+    return populatedMessage;
   } catch (error) {
     throw error;
   }
