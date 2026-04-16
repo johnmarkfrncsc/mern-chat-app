@@ -6,22 +6,28 @@ const SocketContext = createContext();
 
 const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
-
   const { user } = useContext(AuthContext);
-  useEffect(() => {
-    if (user) {
-      const newSocket = io("http://localhost:8080");
-      setSocket(newSocket);
 
-      newSocket.on("connect", () => {
-        console.log("Connected: ", newSocket.id);
-      });
-      return () => newSocket.disconnect();
-    } else {
-      socket?.disconnect();
-      setSocket(null);
-    }
-  }, [user]);
+  useEffect(() => {
+    if (!user?._id) return;
+
+    const newSocket = io("http://localhost:8080", {
+      auth: {
+        userId: user._id,
+        username: user.username,
+      },
+    });
+
+    setSocket(newSocket);
+
+    newSocket.on("connect", () => {
+      console.log("Connected:", newSocket.id);
+    });
+
+    return () => {
+      newSocket.disconnect();
+    };
+  }, [user?._id]);
 
   return (
     <SocketContext.Provider value={{ socket }}>

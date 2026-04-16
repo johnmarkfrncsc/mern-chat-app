@@ -2,10 +2,35 @@ import sendMessage from "../services/message/sendMessage.js";
 
 const chatSocket = (io) => {
   io.on("connection", (socket) => {
-    console.log(`a user connected ${socket.id}`);
+    const { userId, username } = socket.handshake.auth;
+
+    socket.userId = userId;
+    socket.username = username;
+
+    console.log(`USER: ${username}, CONNECTED:(${socket.id})`);
+
     socket.on("joinRoom", (conversationId) => {
       socket.join(conversationId);
-      console.log(`a user joined room : ${conversationId}`);
+
+      const roomSockets = io.sockets.adapter.rooms.get(conversationId);
+
+      const usersInRoom = [];
+
+      if (roomSockets) {
+        for (const socketId of roomSockets) {
+          const s = io.sockets.sockets.get(socketId);
+
+          if (s) {
+            usersInRoom.push({
+              userId: s.userId,
+              username: s.username,
+              socketId: s.id,
+            });
+          }
+        }
+      }
+
+      console.log(`Users in room ${conversationId}:`, usersInRoom);
     });
 
     socket.on("sendMessage", async ({ conversationId, senderId, text }) => {
@@ -14,7 +39,7 @@ const chatSocket = (io) => {
     });
 
     socket.on("disconnect", () => {
-      console.log(`user disconnected: ${socket.id}`);
+      console.log(`USER: ${username}, DISCONNECTED:(${socket.id})`);
     });
   });
 };
