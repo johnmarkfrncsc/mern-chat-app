@@ -47,8 +47,6 @@ const ChatBox = ({ conversationId, senderId }) => {
   const handleSend = async (text) => {
     if (!text.trim()) return;
 
-    await sendMessage(conversationId, text);
-
     socket.emit("sendMessage", {
       conversationId,
       senderId: user._id,
