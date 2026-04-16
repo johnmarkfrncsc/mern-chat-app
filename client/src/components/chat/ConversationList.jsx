@@ -1,12 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Plus } from "lucide-react";
 import { getUserConversations } from "../../api/chat.js";
 import useAuth from "../../hooks/useAuth.js";
+import { AuthContext } from "../../context/authContext.jsx";
 
 const ConversationList = ({ setSelectedConversationId }) => {
   const [isOpen, setIsopen] = useState(true);
   const [conversations, setConversations] = useState([]);
   const { user } = useAuth();
+  const { logout } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setIsopen((prev) => !prev);
@@ -22,6 +26,11 @@ const ConversationList = ({ setSelectedConversationId }) => {
 
     load();
   }, []);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
     <>
@@ -42,7 +51,7 @@ const ConversationList = ({ setSelectedConversationId }) => {
             <div className="mt-4 flex flex-col gap-2">
               {conversations.map((conv) => {
                 const otherUser = conv.participants.find(
-                  (p) => p._id !== user._id,
+                  (p) => p._id !== user?._id,
                 );
 
                 return (
@@ -57,6 +66,7 @@ const ConversationList = ({ setSelectedConversationId }) => {
               })}
             </div>
           </nav>
+          <button onClick={handleLogout}>Log out</button>
         </div>
       ) : (
         <div className="w-20 bg-[#0A1022] text-gray-200 py-4">
