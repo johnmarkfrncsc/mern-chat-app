@@ -57,7 +57,7 @@ const ChatBox = ({ conversationId, senderId }) => {
   return (
     <div className="flex flex-col h-full">
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto no-scrollbar">
+      <div className="flex-1 overflow-y-auto scrollbar">
         <MessageList messages={messages} />
       </div>
 
