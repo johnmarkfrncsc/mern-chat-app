@@ -35,38 +35,55 @@ const ConversationList = ({ setSelectedConversationId }) => {
   return (
     <>
       {isOpen ? (
-        <div className="w-64 bg-[#0A1022] text-gray-200 py-4">
-          <header className="flex justify-around">
-            <h2 className="text-xl">Next chat</h2>
+        <div className="w-64 h-screen bg-[#0A1022] text-gray-200 py-4 flex flex-col justify-between">
+          <div>
+            <header className="flex justify-around">
+              <h2 className="text-xl">Next chat</h2>
+              <button onClick={toggleSidebar}>
+                <Plus />
+              </button>
+            </header>
 
-            <button onClick={toggleSidebar}>
-              <Plus />
+            <nav className="px-4 mt-10">
+              <h5 className="uppercase text-xs text-gray-400">
+                Direct Message
+              </h5>
+
+              {/* map convo list */}
+              <div className="mt-4 flex flex-col gap-2">
+                {conversations.map((conv) => {
+                  const otherUser = conv.participants.find(
+                    (p) => p._id !== user?._id,
+                  );
+
+                  return (
+                    <div
+                      key={conv._id}
+                      onClick={() => setSelectedConversationId(conv._id)}
+                      className="p-2 bg-[#121626] rounded cursor-pointer hover:bg-[#1a213d]"
+                    >
+                      {otherUser?.username || "Unknown user"}
+                    </div>
+                  );
+                })}
+              </div>
+            </nav>
+          </div>
+
+          <div className="px-4">
+            <button
+              onClick={handleLogout}
+              className="w-full px-4 py-2 rounded-md text-sm font-medium
+                 bg-[#050A1A] text-gray-300
+                 hover:bg-[#0A1022] hover:text-white
+                 transition-all duration-200
+                 border border-transparent
+                 hover:border-red-500/30
+                 hover:shadow-[0_0_10px_rgba(239,68,68,0.15)]"
+            >
+              Log out
             </button>
-          </header>
-
-          <nav className="px-4 mt-10">
-            <h5 className="uppercase text-xs text-gray-400">Direct Message</h5>
-
-            {/* map convo list */}
-            <div className="mt-4 flex flex-col gap-2">
-              {conversations.map((conv) => {
-                const otherUser = conv.participants.find(
-                  (p) => p._id !== user?._id,
-                );
-
-                return (
-                  <div
-                    key={conv._id}
-                    onClick={() => setSelectedConversationId(conv._id)}
-                    className="p-2 bg-[#121626] rounded cursor-pointer hover:bg-[#1a213d]"
-                  >
-                    {otherUser?.username || "Unknown user"}
-                  </div>
-                );
-              })}
-            </div>
-          </nav>
-          <button onClick={handleLogout}>Log out</button>
+          </div>
         </div>
       ) : (
         <div className="w-20 bg-[#0A1022] text-gray-200 py-4">
