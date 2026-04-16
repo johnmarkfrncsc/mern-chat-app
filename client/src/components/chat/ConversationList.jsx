@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Plus } from "lucide-react";
 import { getUserConversations } from "../../api/chat.js";
+import useAuth from "../../hooks/useAuth.js";
 
 const ConversationList = ({ setSelectedConversationId }) => {
   const [isOpen, setIsopen] = useState(true);
   const [conversations, setConversations] = useState([]);
+  const { user } = useAuth();
 
   const toggleSidebar = () => {
     setIsopen((prev) => !prev);
@@ -38,15 +40,21 @@ const ConversationList = ({ setSelectedConversationId }) => {
 
             {/* map convo list */}
             <div className="mt-4 flex flex-col gap-2">
-              {conversations.map((conv) => (
-                <div
-                  key={conv._id}
-                  onClick={() => setSelectedConversationId(conv._id)}
-                  className="p-2 bg-[#121626] rounded cursor-pointer hover:bg-[#1a213d]"
-                >
-                  {conv.name || "Unnamed chat"}
-                </div>
-              ))}
+              {conversations.map((conv) => {
+                const otherUser = conv.participants.find(
+                  (p) => p._id !== user._id,
+                );
+
+                return (
+                  <div
+                    key={conv._id}
+                    onClick={() => setSelectedConversationId(conv._id)}
+                    className="p-2 bg-[#121626] rounded cursor-pointer hover:bg-[#1a213d]"
+                  >
+                    {otherUser?.username || "Unknown user"}
+                  </div>
+                );
+              })}
             </div>
           </nav>
         </div>
