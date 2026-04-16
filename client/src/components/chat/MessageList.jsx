@@ -20,24 +20,20 @@ const MessageList = ({ messages }) => {
             className={`flex ${isOwn ? "justify-end" : "justify-start"}`}
           >
             <div
-              className={`max-w-xs px-4 py-1.5 rounded-lg shadow text-sm ${
+              className={`max-w-xs px-4 py-1.5 rounded-lg shadow text-sm wrap-break-word whitespace-pre-wrap ${
                 isOwn
                   ? "bg-green-500 text-right text-white"
                   : "bg-gray-600 text-left text-white"
               }`}
             >
-              {/* Username (only for received messages) */}
-              {!isOwn && (
-                <div className="text-xs font-semibold text-gray-200 mb-1">
-                  {message.sender.username}
-                </div>
-              )}
-
               {/* Message text */}
               <div>{message.text}</div>
 
               {/* Time */}
-              <div className="text-[10px] text-gray-200 mt-1 text-right">
+              <div
+                className={`text-[10px] text-gray-200 mt-1 
+                  ${isOwn ? "text-right" : "text-left"}`}
+              >
                 {new Date(message.createdAt).toLocaleTimeString([], {
                   hour: "2-digit",
                   minute: "2-digit",
