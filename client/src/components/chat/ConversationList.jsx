@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Plus, Search } from "lucide-react";
 import { getUserConversations, createConversation } from "../../api/chat.js";
 import useAuth from "../../hooks/useAuth.js";
+import useChat from "../../hooks/useChat.js";
 import { AuthContext } from "../../context/authContext.jsx";
 import searchUsers from "../../api/user.js";
 
@@ -16,6 +17,7 @@ const ConversationList = ({
   const [searchResult, setSearchResult] = useState([]);
   const [conversations, setConversations] = useState([]);
   const { user } = useAuth();
+  const { onlineUsers } = useChat();
   const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -143,6 +145,7 @@ const ConversationList = ({
                   const otherUser = conv.participants.find(
                     (p) => p._id !== user?._id,
                   );
+                  const isOnline = onlineUsers.includes(otherUser?._id);
 
                   return (
                     <div
@@ -151,8 +154,11 @@ const ConversationList = ({
                         setSelectedConversationId(conv._id);
                         setSelectedUsername(otherUser?.username);
                       }}
-                      className="p-2 bg-[#121626] rounded cursor-pointer hover:bg-[#1a213d]"
+                      className="p-2 bg-[#121626] rounded cursor-pointer hover:bg-[#1a213d] flex items-center gap-2"
                     >
+                      <div
+                        className={`h-2 w-2 rounded-full items-center mt-1 ${isOnline ? "bg-green-500" : "bg-gray-500"}`}
+                      />
                       {otherUser?.username || "Unknown user"}
                     </div>
                   );
