@@ -1,12 +1,16 @@
-import { useState, useEffect, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Plus } from "lucide-react";
-import { getUserConversations } from "../../api/chat.js";
+import { useState, useEffect, useContext, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { Plus, Search } from "lucide-react";
+import { getUserConversations, createConversation } from "../../api/chat.js";
 import useAuth from "../../hooks/useAuth.js";
 import { AuthContext } from "../../context/authContext.jsx";
+import searchUsers from "../../api/user.js";
 
 const ConversationList = ({ setSelectedConversationId }) => {
   const [isOpen, setIsopen] = useState(true);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
   const [conversations, setConversations] = useState([]);
   const { user } = useAuth();
   const { logout } = useContext(AuthContext);
@@ -15,6 +19,8 @@ const ConversationList = ({ setSelectedConversationId }) => {
   const toggleSidebar = () => {
     setIsopen((prev) => !prev);
   };
+
+  const containerRef = useRef(null);
 
   // load convo list
   useEffect(() => {
@@ -26,6 +32,46 @@ const ConversationList = ({ setSelectedConversationId }) => {
 
     load();
   }, []);
+
+  //debouncing
+  useEffect(() => {
+    if (!searchQuery) {
+      setSearchResult([]);
+      return;
+    }
+    const timer = setTimeout(async () => {
+      const result = await searchUsers(searchQuery);
+      setSearchResult(result.data);
+    }, 500);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchQuery]);
+
+  //ref for clickoutside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (containerRef.current && !containerRef.current.contains(e.target)) {
+        setSearchQuery("");
+        setSearchResult([]);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleSelectUser = async (userId) => {
+    await createConversation(userId);
+    const res = await getUserConversations();
+    setConversations(res.data);
+    setIsSearchOpen(false);
+    setSearchQuery("");
+    setSearchResult([]);
+  };
 
   const handleLogout = () => {
     logout();
@@ -43,6 +89,45 @@ const ConversationList = ({ setSelectedConversationId }) => {
                 <Plus />
               </button>
             </header>
+
+            <div ref={containerRef} className="w-full max-w-xl mt-10 px-3">
+              {/* Search Bar */}
+              <div
+                className="flex items-center bg-[#1A213D] border border-[#2b2d31] rounded-xl px-3 py-2
+               focus-within:border-blue-600"
+              >
+                <Search className="text-gray-400 mr-2" size={18} />
+
+                <input
+                  type="text"
+                  placeholder="Search"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="bg-transparent outline-none text-sm text-gray-200 w-full placeholder-gray-400"
+                />
+              </div>
+
+              {/* Results */}
+              {searchQuery && (
+                <div className="mt-2 bg-[#1A213D] border border-[#2b2d31] rounded-lg overflow-hidden">
+                  {searchResult.length > 0 ? (
+                    searchResult.map((user) => (
+                      <div
+                        key={user._id}
+                        onClick={() => handleSelectUser(user._id)}
+                        className="px-3 py-2 text-sm text-gray-200 cursor-pointer hover:bg-[#2b2d31]"
+                      >
+                        {user.username}
+                      </div>
+                    ))
+                  ) : (
+                    <div className="px-3 py-2 text-sm text-gray-400">
+                      No user found
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
 
             <nav className="px-4 mt-10">
               <h5 className="uppercase text-xs text-gray-400">
