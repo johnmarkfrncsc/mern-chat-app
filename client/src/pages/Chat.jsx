@@ -13,13 +13,19 @@ const Chat = () => {
         <nav className="border-b border-gray-700 p-4 flex items-center">
           <div className="h-3 w-3 bg-green-500 rounded-full mr-2" />
           <h3 className="text-white text-lg">
-            Alex Rivera {/*PLACE HOLDER LANG ITO HAAA*/}
+            {selectedConversationId} {/*PLACE HOLDER LANG ITO HAAA*/}
           </h3>
         </nav>
 
         {/* Chat area */}
         <div className="flex-1 overflow-hidden">
-          <ChatBox conversationId={selectedConversationId} />
+          {selectedConversationId ? (
+            <ChatBox conversationId={selectedConversationId} />
+          ) : (
+            <div className="flex-1 flex items-center justify-center text-gray-500">
+              Select a conversation to start chatting
+            </div>
+          )}
         </div>
       </div>
     </div>
