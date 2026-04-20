@@ -6,7 +6,10 @@ import useAuth from "../../hooks/useAuth.js";
 import { AuthContext } from "../../context/authContext.jsx";
 import searchUsers from "../../api/user.js";
 
-const ConversationList = ({ setSelectedConversationId }) => {
+const ConversationList = ({
+  setSelectedConversationId,
+  setSelectedUsername,
+}) => {
   const [isOpen, setIsopen] = useState(true);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -144,7 +147,10 @@ const ConversationList = ({ setSelectedConversationId }) => {
                   return (
                     <div
                       key={conv._id}
-                      onClick={() => setSelectedConversationId(conv._id)}
+                      onClick={() => {
+                        setSelectedConversationId(conv._id);
+                        setSelectedUsername(otherUser?.username);
+                      }}
                       className="p-2 bg-[#121626] rounded cursor-pointer hover:bg-[#1a213d]"
                     >
                       {otherUser?.username || "Unknown user"}

@@ -4,16 +4,20 @@ import { useState } from "react";
 
 const Chat = () => {
   const [selectedConversationId, setSelectedConversationId] = useState(null);
+  const [selectedUsername, setSelectedUsername] = useState(null);
   return (
     <div className="h-screen flex overflow-hidden">
-      <ConversationList setSelectedConversationId={setSelectedConversationId} />
+      <ConversationList
+        setSelectedConversationId={setSelectedConversationId}
+        setSelectedUsername={setSelectedUsername}
+      />
 
       <div className="flex flex-col flex-1 bg-[#050A1A]">
         {/* Header */}
         <nav className="border-b border-gray-700 p-4 flex items-center">
           <div className="h-3 w-3 bg-green-500 rounded-full mr-2" />
           <h3 className="text-white text-lg">
-            {selectedConversationId} {/*PLACE HOLDER LANG ITO HAAA*/}
+            {selectedUsername || "Select a conversation"}{" "}
           </h3>
         </nav>
 
