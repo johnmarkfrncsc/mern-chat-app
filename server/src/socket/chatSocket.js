@@ -1,8 +1,12 @@
 import sendMessage from "../services/message/sendMessage.js";
 
 const chatSocket = (io) => {
+  const onlineUsers = new Map();
+
   io.on("connection", (socket) => {
     const { userId, username } = socket.handshake.auth;
+    onlineUsers.set(socket.id, userId);
+    io.emit("onlineUsers", Array.from(onlineUsers.values()));
 
     socket.userId = userId;
     socket.username = username;
@@ -40,6 +44,8 @@ const chatSocket = (io) => {
 
     socket.on("disconnect", () => {
       console.log(`USER: ${username}, DISCONNECTED:(${socket.id})`);
+      onlineUsers.delete(socket.id);
+      io.emit("onlineUsers", Array.from(onlineUsers.values()));
     });
   });
 };
