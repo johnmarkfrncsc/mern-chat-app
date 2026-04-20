@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { AuthContext } from "./authContext.jsx";
 
@@ -7,6 +7,7 @@ const SocketContext = createContext();
 const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
   const { user } = useContext(AuthContext);
+  const [onlineUsers, setOnlineUsers] = useState([]);
 
   useEffect(() => {
     if (!user?._id) return;
@@ -24,13 +25,17 @@ const SocketProvider = ({ children }) => {
       console.log("Connected:", newSocket.id);
     });
 
+    newSocket.on("onlineUsers", (users) => {
+      setOnlineUsers(users);
+    });
+
     return () => {
       newSocket.disconnect();
     };
   }, [user?._id]);
 
   return (
-    <SocketContext.Provider value={{ socket }}>
+    <SocketContext.Provider value={{ socket, onlineUsers }}>
       {children}
     </SocketContext.Provider>
   );
