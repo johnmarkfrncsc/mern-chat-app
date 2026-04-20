@@ -9,6 +9,15 @@ const MessageList = ({ messages }) => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  if (messages.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full text-center text-gray-400 px-4">
+        <p className="text-md">No messages yet</p>
+        <p className="text-sm mt-1">Start the conversation, Say hi👋</p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-2 p-4">
       {messages.map((message) => {
