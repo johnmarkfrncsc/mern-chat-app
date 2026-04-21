@@ -21,6 +21,14 @@ const UserModel = new mongoose.Schema(
       type: String,
       default: "",
     },
+    lastUsernameChange: {
+      type: Date,
+      default: null,
+    },
+    lastPasswordChange: {
+      type: Date,
+      default: null,
+    },
   },
   {
     timestamps: true,
