@@ -71,6 +71,7 @@ const ConversationList = ({ setSelectedConversation }) => {
                       conv={conv}
                       otherUser={otherUser}
                       isOnline={isOnline}
+                      isOpen={isOpen}
                       onClick={() =>
                         setSelectedConversation({
                           id: conv._id,
@@ -106,6 +107,34 @@ const ConversationList = ({ setSelectedConversation }) => {
               <Plus />
             </button>
           </header>
+          <nav className="px-4 mt-10">
+            <h5 className="uppercase text-xs text-gray-400">Direct Message</h5>
+
+            {/* map convo list */}
+            <div className="mt-4 flex flex-col gap-2">
+              {conversations.map((conv) => {
+                const otherUser = conv.participants.find(
+                  (p) => p._id !== user?._id,
+                );
+                const isOnline = onlineUsers.includes(otherUser?._id);
+                return (
+                  <ConversationItem
+                    key={conv._id}
+                    conv={conv}
+                    otherUser={otherUser}
+                    isOnline={isOnline}
+                    isOpen={false}
+                    onClick={() =>
+                      setSelectedConversation({
+                        id: conv._id,
+                        username: otherUser?.username,
+                      })
+                    }
+                  />
+                );
+              })}
+            </div>
+          </nav>
         </div>
       )}
     </>
