@@ -1,4 +1,13 @@
-const ConversationItem = ({ conv, otherUser, isOnline, onClick, isOpen }) => {
+import { useState } from "react";
+
+const ConversationItem = ({
+  conv,
+  otherUser,
+  isOnline,
+  onClick,
+  isOpen,
+  isSelected,
+}) => {
   const firstLetter = otherUser?.username.charAt(0).toUpperCase();
   const hasPhoto = otherUser?.profilePhoto && otherUser?.profilePhoto !== "";
 
@@ -6,24 +15,32 @@ const ConversationItem = ({ conv, otherUser, isOnline, onClick, isOpen }) => {
     <>
       {isOpen ? (
         <div
+          className={`flex items-center gap-2 cursor-pointer p-1.5 rounded
+          ${isSelected ? "bg-[#1e2a4a]" : "hover:bg-gray-700"}`}
           key={conv._id}
           onClick={onClick}
-          className="p-2 bg-[#121626] rounded cursor-pointer hover:bg-[#1a213d] flex items-center gap-2"
         >
-          {hasPhoto ? (
-            <img
-              src={otherUser?.profilePhoto}
-              className="w-10 h-10  object-cover"
+          <div className="relative w-8 h-8">
+            {hasPhoto ? (
+              <img
+                src={otherUser?.profilePhoto}
+                className="w-8 h-8 rounded-lg object-cover"
+              />
+            ) : (
+              <div className="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-white">
+                {firstLetter}
+              </div>
+            )}
+            <div
+              className={`absolute bottom-0 right-0 w-3 h-3 rounded-full 
+                ring-2 ring-[#121626]
+                ${isOnline ? "bg-green-500" : "bg-gray-500"}`}
             />
-          ) : (
-            <div className="w-10 h-10 rounded-lg text-amber-50 bg-indigo-500 flex items-center justify-center">
-              {firstLetter}
-            </div>
-          )}
-          <div
-            className={`h-2 w-2 rounded-full items-center mt-1 ${isOnline ? "bg-green-500" : "bg-gray-500"}`}
-          />
-          {otherUser?.username || "Unknown user"}
+          </div>
+
+          <span className="text-white">
+            {otherUser?.username || "Unknown user"}
+          </span>
         </div>
       ) : (
         <div
@@ -36,7 +53,7 @@ const ConversationItem = ({ conv, otherUser, isOnline, onClick, isOpen }) => {
               className="w-10 h-10 rounded-lg object-cover"
             />
           ) : (
-            <div className="w-10 h-10 rounded-lg text-amber-50 bg-indigo-500 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl text-amber-50 bg-indigo-500 flex items-center justify-center">
               {firstLetter}
             </div>
           )}

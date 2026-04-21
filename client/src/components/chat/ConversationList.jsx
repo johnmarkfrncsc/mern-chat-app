@@ -8,7 +8,10 @@ import useConversation from "../../hooks/useConversation.js";
 import SearchUser from "./SearchUser.jsx";
 import ConversationItem from "./ConversationItem.jsx";
 
-const ConversationList = ({ setSelectedConversation }) => {
+const ConversationList = ({
+  setSelectedConversation,
+  selectedConversation,
+}) => {
   const {
     conversations,
     searchQuery,
@@ -59,7 +62,7 @@ const ConversationList = ({ setSelectedConversation }) => {
               </h5>
 
               {/* map convo list */}
-              <div className="mt-4 flex flex-col gap-2">
+              <div className="mt-4 flex flex-col gap-1">
                 {conversations.map((conv) => {
                   const otherUser = conv.participants.find(
                     (p) => p._id !== user?._id,
@@ -72,6 +75,7 @@ const ConversationList = ({ setSelectedConversation }) => {
                       otherUser={otherUser}
                       isOnline={isOnline}
                       isOpen={isOpen}
+                      isSelected={selectedConversation?.id === conv._id}
                       onClick={() =>
                         setSelectedConversation({
                           id: conv._id,
@@ -111,7 +115,7 @@ const ConversationList = ({ setSelectedConversation }) => {
             <h5 className="uppercase text-xs text-gray-400">Direct Message</h5>
 
             {/* map convo list */}
-            <div className="mt-4 flex flex-col gap-2">
+            <div className="mt-4 flex flex-col gap-1">
               {conversations.map((conv) => {
                 const otherUser = conv.participants.find(
                   (p) => p._id !== user?._id,
@@ -124,6 +128,7 @@ const ConversationList = ({ setSelectedConversation }) => {
                     otherUser={otherUser}
                     isOnline={isOnline}
                     isOpen={false}
+                    isSelected={selectedConversation?.id === conv._id}
                     onClick={() =>
                       setSelectedConversation({
                         id: conv._id,

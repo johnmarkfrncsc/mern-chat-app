@@ -7,7 +7,10 @@ const Chat = () => {
 
   return (
     <div className="h-screen flex overflow-hidden">
-      <ConversationList setSelectedConversation={setSelectedConversation} />
+      <ConversationList
+        setSelectedConversation={setSelectedConversation}
+        selectedConversation={selectedConversation}
+      />
 
       <div className="flex flex-col flex-1 bg-[#050A1A]">
         {/* Header */}
