@@ -19,6 +19,11 @@ const uploadPhoto = async (userId, fileBuffer) => {
   const dataUri = `data:image/jpeg;base64,${base64}`;
   const result = await cloudinary.uploader.upload(dataUri, {
     folder: "mern_chatApp/profile",
+    transformation: [
+      { width: 200, height: 200, crop: "fill" },
+      { quality: "auto" },
+      { fetch_format: "auto" },
+    ],
   });
 
   const updateProfile = await UserModel.findByIdAndUpdate(
