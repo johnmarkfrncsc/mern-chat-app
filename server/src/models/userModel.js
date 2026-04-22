@@ -30,6 +30,10 @@ const UserModel = new mongoose.Schema(
       type: Date,
       default: null,
     },
+    lastPhotoChange: {
+      type: Date,
+      default: null,
+    },
   },
   {
     timestamps: true,
