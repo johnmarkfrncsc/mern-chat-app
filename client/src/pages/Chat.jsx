@@ -12,10 +12,10 @@ const Chat = () => {
         selectedConversation={selectedConversation}
       />
 
-      <div className="flex flex-col flex-1 bg-[#050A1A]">
+      <div className="flex flex-col flex-1 bg-[#FFFFFF]">
         {/* Header */}
-        <nav className="border-b border-gray-700 p-4 flex items-center">
-          <h3 className="text-white text-lg">
+        <nav className="bg-[#FAFAFA] border-b border-[#E8E8E8] p-4 flex items-center">
+          <h3 className="text-[#2C5B52] text-lg font-semibold tracking-wide">
             {selectedConversation?.username || "Select a conversation"}{" "}
           </h3>
         </nav>
@@ -25,7 +25,7 @@ const Chat = () => {
           {selectedConversation?.id ? (
             <ChatBox conversationId={selectedConversation?.id} />
           ) : (
-            <div className="flex-1 flex items-center justify-center text-gray-500">
+            <div className="flex-1 flex items-center h-screen justify-center text-black">
               Select a conversation to start chatting
             </div>
           )}

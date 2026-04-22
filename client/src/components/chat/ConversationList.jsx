@@ -39,10 +39,12 @@ const ConversationList = ({
   return (
     <>
       {isOpen ? (
-        <div className="w-64 h-screen bg-[#0A1022] text-gray-200 py-4 flex flex-col justify-between">
+        <div className="w-64 h-screen bg-[#FFFFFF] text-black py-4 flex flex-col justify-between border-r border-[#EBEBEB]">
           <div>
             <header className="flex justify-around">
-              <h2 className="text-xl">Next chat</h2>
+              <h2 className="text-xl font-bold font-serif text-[#29665B]">
+                Next chat
+              </h2>
               <button onClick={toggleSidebar}>
                 <Plus />
               </button>
@@ -92,12 +94,12 @@ const ConversationList = ({
           <div className="px-4">
             <button
               onClick={handleLogout}
-              className="w-full px-4 py-2 rounded-md text-sm font-medium
-                 bg-[#050A1A] text-gray-300
-                 hover:bg-[#0A1022] hover:text-white
+              className="w-full px-4 py-2 rounded-md text-sm font-medium cursor-pointer
+                 bg-[#FAFAFA] text-gray-700
+                 hover:bg-[#F7F7F7] hover:text-gray-700
                  transition-all duration-200
-                 border border-transparent
-                 hover:border-red-500/30
+                 border border-[#EFEFEF]
+                 hover:border-red-500/50
                  hover:shadow-[0_0_10px_rgba(239,68,68,0.15)]"
             >
               Log out
@@ -105,7 +107,7 @@ const ConversationList = ({
           </div>
         </div>
       ) : (
-        <div className="w-20 bg-[#0A1022] text-gray-200 py-4">
+        <div className="w-20 bg-[#FFFFFF] text-black py-4">
           <header className="flex justify-around">
             <button onClick={toggleSidebar}>
               <Plus />

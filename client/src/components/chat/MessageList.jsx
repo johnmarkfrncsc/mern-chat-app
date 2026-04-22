@@ -31,8 +31,8 @@ const MessageList = ({ messages }) => {
             <div
               className={`max-w-xs px-4 py-1.5 rounded-lg shadow text-sm wrap-break-word whitespace-pre-wrap ${
                 isOwn
-                  ? "bg-green-500 text-right text-white"
-                  : "bg-gray-600 text-left text-white"
+                  ? "bg-green-500 text-right border border-[#54cd84] text-white"
+                  : "bg-[#FAFAFA] text-left border border-[#E8EAEC] text-gray-700"
               }`}
             >
               {/* Message text */}
@@ -40,8 +40,8 @@ const MessageList = ({ messages }) => {
 
               {/* Time */}
               <div
-                className={`text-[10px] text-gray-200 mt-1 
-                  ${isOwn ? "text-right" : "text-left"}`}
+                className={`text-[10px] mt-1 
+                  ${isOwn ? "text-right text-gray-100" : "text-left text-gray-400"}`}
               >
                 {new Date(message.createdAt).toLocaleTimeString([], {
                   hour: "2-digit",

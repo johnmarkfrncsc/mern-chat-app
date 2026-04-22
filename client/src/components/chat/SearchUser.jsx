@@ -11,29 +11,29 @@ const SearchUser = ({
     <div ref={containerRef} className="w-full max-w-xl mt-10 px-3">
       {/* Search Bar */}
       <div
-        className="flex items-center bg-[#1A213D] border border-[#2b2d31] rounded-xl px-3 py-2
-               focus-within:border-blue-600"
+        className="flex items-center bg-[#F6F6F6] border border-[#E9E9E9] rounded-xl px-3 py-2
+               focus-within:border-[#434345]"
       >
-        <Search className="text-gray-400 mr-2" size={18} />
+        <Search className="text-[#29665B] mr-2" size={18} />
 
         <input
           type="text"
           placeholder="Search"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="bg-transparent outline-none text-sm text-gray-200 w-full placeholder-gray-400"
+          className="bg-transparent outline-none text-sm text-black w-full placeholder-gray-400"
         />
       </div>
 
       {/* Results */}
       {searchQuery && (
-        <div className="mt-2 bg-[#1A213D] border border-[#2b2d31] rounded-lg overflow-hidden">
+        <div className="mt-2 bg-[#FFFFFF] border border-[#E4E4E4] rounded-lg overflow-hidden">
           {searchResult.length > 0 ? (
             searchResult.map((user) => (
               <div
                 key={user._id}
                 onClick={() => handleSelectUser(user._id)}
-                className="px-3 py-2 text-sm text-gray-200 cursor-pointer hover:bg-[#2b2d31]"
+                className="px-3 py-2 text-sm font-medium text-[#6A6A6A] cursor-pointer hover:bg-[#F7F7F7]"
               >
                 {user.username}
               </div>

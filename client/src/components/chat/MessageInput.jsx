@@ -15,19 +15,19 @@ const MessageInput = ({ onSend }) => {
   };
 
   return (
-    <div className="bg-[#0A1022] p-2">
+    <div className="bg-[#FFFFFF] p-2">
       <div className="relative">
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={handleEnterKey}
-          className="w-full border rounded-full py-2 pl-4 pr-10 text-white bg-[#1e1f22] focus:outline-none"
+          className="w-full border-2 rounded-full py-2 pl-4 pr-10 text-black bg-[#F6F6F6] border-[#DFE1E5] focus:outline-none"
           placeholder="Type a message..."
         />
 
         <SendHorizontal
           onClick={handleSend}
-          className="w-5 h-5 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer hover:text-white transition"
+          className="w-5 h-5 text-[#29665B] absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer hover:text-white transition"
         />
       </div>
     </div>

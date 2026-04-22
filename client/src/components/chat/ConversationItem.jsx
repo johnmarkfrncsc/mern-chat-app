@@ -15,8 +15,8 @@ const ConversationItem = ({
     <>
       {isOpen ? (
         <div
-          className={`flex items-center gap-2 cursor-pointer p-1.5 rounded
-          ${isSelected ? "bg-[#1e2a4a]" : "hover:bg-gray-700"}`}
+          className={`flex items-center gap-2 cursor-pointer p-1.5 rounded text-black
+          ${isSelected ? "bg-[#F7F7F7]" : "hover:bg-[#F7F7F7]"}`}
           key={conv._id}
           onClick={onClick}
         >
@@ -33,12 +33,12 @@ const ConversationItem = ({
             )}
             <div
               className={`absolute bottom-0 right-0 w-3 h-3 rounded-full 
-                ring-2 ring-[#121626]
+                ring-2 ring-[#DFE1E5]
                 ${isOnline ? "bg-green-500" : "bg-gray-500"}`}
             />
           </div>
 
-          <span className="text-white">
+          <span className="text-black tracking-wide">
             {otherUser?.username || "Unknown user"}
           </span>
         </div>
