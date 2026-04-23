@@ -20,7 +20,7 @@ const UploadForm = ({
       className="flex flex-col gap-4"
     >
       <div className="flex flex-col gap-1">
-        <label className="text-xs font-bold text-gray-400 uppercase">
+        <label className="text-xs font-bold text-gray-500 uppercase">
           Profile Photo
         </label>
         <input
@@ -31,7 +31,7 @@ const UploadForm = ({
       </div>
       <button
         type="submit"
-        className="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded text-sm w-fit transition"
+        className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded text-sm w-fit transition"
       >
         Upload Photo
       </button>

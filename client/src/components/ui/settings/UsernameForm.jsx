@@ -21,7 +21,7 @@ const UsernameForm = ({
         className="flex flex-col gap-4"
       >
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-bold text-gray-400 uppercase">
+          <label className="text-xs font-bold text-gray-500 uppercase">
             New Username
           </label>
           <input
@@ -29,12 +29,12 @@ const UsernameForm = ({
             placeholder="Enter new username"
             value={formData.username}
             onChange={(e) => updateField("username", e.target.value)}
-            className="bg-[#1E1F22] border border-gray-700 rounded px-3 py-2 text-sm focus:outline-none focus:border-indigo-500"
+            className="bg-[#F6F6F6] border border-gray-700 rounded px-3 py-2 text-sm focus:outline-none focus:border-teal-700"
           />
         </div>
         <button
           type="submit"
-          className="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded text-sm w-fit transition"
+          className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded text-sm w-fit transition"
         >
           Save Changes
         </button>
