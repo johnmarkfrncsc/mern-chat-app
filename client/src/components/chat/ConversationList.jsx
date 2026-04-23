@@ -98,7 +98,7 @@ const ConversationList = ({
                  bg-[#FAFAFA] text-gray-700
                  hover:bg-[#F7F7F7] hover:text-gray-700
                  transition-all duration-200
-                 border border-[#EFEFEF]
+                 border border-[#dfdddd]
                  hover:border-red-500/50
                  hover:shadow-[0_0_10px_rgba(239,68,68,0.15)]"
             >

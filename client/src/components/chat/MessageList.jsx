@@ -28,20 +28,22 @@ const MessageList = ({ messages }) => {
             key={message._id}
             className={`flex ${isOwn ? "justify-end" : "justify-start"}`}
           >
-            <div
-              className={`max-w-xs px-4 py-1.5 rounded-lg shadow text-sm wrap-break-word whitespace-pre-wrap ${
-                isOwn
-                  ? "bg-green-500 text-right border border-[#54cd84] text-white"
-                  : "bg-[#FAFAFA] text-left border border-[#E8EAEC] text-gray-700"
-              }`}
-            >
-              {/* Message text */}
-              <div>{message.text}</div>
+            <div>
+              <div
+                className={`max-w-xs px-4 py-1.5 shadow text-sm wrap-break-word whitespace-pre-wrap ${
+                  isOwn
+                    ? "bg-green-500 text-right border border-[#54cd84] text-white rounded-4xl rounded-br-md shadow-sm"
+                    : "bg-[#FAFAFA] text-left border border-[#E8EAEC] text-gray-700 rounded-4xl rounded-bl-md shadow-sm"
+                }`}
+              >
+                {/* Message text */}
+                <div>{message.text}</div>
+              </div>
 
               {/* Time */}
               <div
-                className={`text-[10px] mt-1 
-                  ${isOwn ? "text-right text-gray-100" : "text-left text-gray-400"}`}
+                className={`text-[10px] mt-1 text-gray-500
+                  ${isOwn ? "text-right mr-0.5" : "text-left ml-0.5"}`}
               >
                 {new Date(message.createdAt).toLocaleTimeString([], {
                   hour: "2-digit",
