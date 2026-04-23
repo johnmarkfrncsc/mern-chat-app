@@ -8,19 +8,21 @@ const UserCard = ({ onSettingsClick }) => {
   const hasPhoto = user?.profilePhoto && user?.profilePhoto !== "";
 
   return (
-    <div className="bg-[#0A1022] flex items-center justify-between w-full px-3 py-2">
-      {hasPhoto ? (
-        <img
-          src={user.profilePhoto}
-          alt=""
-          className="w-8 h-8 rounded-lg object-cover"
-        />
-      ) : (
-        <div className="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-white">
-          {firstLetter}
-        </div>
-      )}
-      <span>{user.username}</span>
+    <div className="bg-[#E2E2E2] flex items-center justify-between w-full px-3 py-2 rounded-2xl ">
+      <div className="flex flex-1 items-center gap-2">
+        {hasPhoto ? (
+          <img
+            src={user.profilePhoto}
+            alt=""
+            className="w-8 h-8 rounded-full object-cover"
+          />
+        ) : (
+          <div className="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-white">
+            {firstLetter}
+          </div>
+        )}
+        <span>{user?.username}</span>
+      </div>
       <div>
         <Settings
           onClick={onSettingsClick}
