@@ -1,12 +1,13 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Plus } from "lucide-react";
-import { AuthContext } from "../../context/authContext.jsx";
 import useAuth from "../../hooks/useAuth.js";
 import useChat from "../../hooks/useChat.js";
 import useConversation from "../../hooks/useConversation.js";
 import SearchUser from "./SearchUser.jsx";
 import ConversationItem from "./ConversationItem.jsx";
+import UserCard from "../ui/UserCard.jsx";
+import SettingsModal from "../ui/SettingsModal.jsx";
 
 const ConversationList = ({
   setSelectedConversation,
@@ -22,18 +23,13 @@ const ConversationList = ({
   } = useConversation();
 
   const [isOpen, setIsopen] = useState(true);
-  const navigate = useNavigate();
   const { user } = useAuth();
   const { onlineUsers } = useChat();
-  const { logout } = useContext(AuthContext);
+
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsopen((prev) => !prev);
-  };
-
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
   };
 
   return (
@@ -91,19 +87,11 @@ const ConversationList = ({
             </nav>
           </div>
 
-          <div className="px-4">
-            <button
-              onClick={handleLogout}
-              className="w-full px-4 py-2 rounded-md text-sm font-medium cursor-pointer
-                 bg-[#FAFAFA] text-gray-700
-                 hover:bg-[#F7F7F7] hover:text-gray-700
-                 transition-all duration-200
-                 border border-[#dfdddd]
-                 hover:border-red-500/50
-                 hover:shadow-[0_0_10px_rgba(239,68,68,0.15)]"
-            >
-              Log out
-            </button>
+          <div className="mx-2 my-2">
+            <UserCard onSettingsClick={() => setIsSettingsOpen(true)} />
+            {isSettingsOpen && (
+              <SettingsModal onClose={() => setIsSettingsOpen(false)} />
+            )}
           </div>
         </div>
       ) : (
