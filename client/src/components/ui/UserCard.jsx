@@ -21,12 +21,14 @@ const UserCard = ({ onSettingsClick }) => {
             {firstLetter}
           </div>
         )}
-        <span>{user?.username}</span>
+        <span className="text-sm font-medium text-gray-800">
+          {user?.username}
+        </span>
       </div>
       <div>
         <Settings
           onClick={onSettingsClick}
-          className="cursor-pointer hover:text-white text-gray-400 transition"
+          className="cursor-pointer hover:text-gray-700 text-gray-400 transition"
         />
       </div>
     </div>

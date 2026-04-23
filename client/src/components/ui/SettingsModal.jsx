@@ -48,7 +48,7 @@ const SettingsModal = ({ onClose }) => {
             <button
               key={section.key}
               onClick={() => setActiveSection(section.key)}
-              className={`text-left px-2 py-1.5 rounded text-sm transition
+              className={`text-left px-2 py-1.5 rounded text-sm font-medium transition cursor-pointer
             ${
               activeSection === section.key
                 ? "bg-[#E2E2E2] text-gray-800"
@@ -66,7 +66,7 @@ const SettingsModal = ({ onClose }) => {
             <button
               key={section.key}
               onClick={() => setActiveSection(section.key)}
-              className={`text-left px-2 py-1.5 rounded text-sm transition cursor-pointer
+              className={`text-left px-2 py-1.5 rounded text-sm font-medium transition cursor-pointer
             ${
               activeSection === section.key
                 ? "bg-[#E2E2E2] text-gray-800"
