@@ -38,11 +38,11 @@ const validateRegisterForm = (data) => {
   });
 };
 
-const validateLogin = (data) => {
+const validateLoginForm = (data) => {
   return validateForm({
     email: data.email,
     password: data.password,
   });
 };
 
-export { validateLogin, validateRegisterForm };
+export { validateLoginForm, validateRegisterForm };
