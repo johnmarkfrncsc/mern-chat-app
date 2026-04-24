@@ -58,7 +58,7 @@ const Register = () => {
 
   const renderError = (field) =>
     errors[field] && (
-      <p className="text-red-400 text-xs mt-1">{errors[field]}</p>
+      <p className="text-red-400 text-xs ml-0.5">{errors[field]}</p>
     );
 
   return (
@@ -92,43 +92,58 @@ const Register = () => {
 
           <form onSubmit={handleSubmit}>
             {/* username */}
-            <label className="text-xs text-gray-400">Username</label>
-            <input
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              className="w-full mt-1 mb-4 px-3 py-2 rounded-md bg-[#1e1f22] 
-            border border-gray-700 focus:outline-none focus:border-indigo-500"
-            />
+            <div className="relative mb-4">
+              <label className="text-xs text-gray-400">Username</label>
+              <input
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                className="w-full mt-1 px-3 py-2 rounded-md bg-[#1e1f22]
+                border border-gray-700 focus:outline-none focus:border-indigo-500"
+              />
+              <p className="text-red-400 text-xs absolute left-0 top-full mt-1 h-4">
+                {errors.username || ""}
+              </p>
+            </div>
 
             {/* email */}
-            <label className="text-xs text-gray-400">Email address</label>
-            <input
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full mt-1 mb-4 px-3 py-2 rounded-md bg-[#1e1f22] 
-            border border-gray-700 focus:outline-none focus:border-indigo-500"
-            />
+            <div className="relative mb-4 pt-2">
+              <label className="text-xs text-gray-400">Email address</label>
+              <input
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full mt-1 px-3 py-2 rounded-md bg-[#1e1f22]
+                border border-gray-700 focus:outline-none focus:border-indigo-500"
+              />
+              <p className="text-red-400 text-xs absolute left-0 top-full mt-1 h-4">
+                {errors.email || ""}
+              </p>
+            </div>
 
             {/* password */}
-            <label className="text-xs text-gray-400">Password</label>
-            <input
-              name="password"
-              type="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="w-full mt-1 mb-4 px-3 py-2 rounded-md bg-[#1e1f22] 
-            border border-gray-700 focus:outline-none focus:border-indigo-500"
-            />
+            <div className="relative mb-4 pt-2">
+              <label className="text-xs text-gray-400">Password</label>
+              <input
+                name="password"
+                type="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full mt-1 px-3 py-2 rounded-md bg-[#1e1f22]
+                border border-gray-700 focus:outline-none focus:border-indigo-500"
+              />
+              <p className="text-red-400 text-xs absolute left-0 top-full mt-1 h-4">
+                {errors.password || ""}
+              </p>
+            </div>
 
             {/* button */}
             <button
               type="submit"
               disabled={loading}
               className="w-full bg-[#5865F2] hover:bg-[#4752C4] 
-            transition py-2 rounded-md font-semibold mb-4 cursor-pointer disabled:opacity-50"
+            transition py-2 mt-4 rounded-md font-semibold mb-4 cursor-pointer disabled:opacity-50"
             >
               {loading ? "Creating..." : "Create account"}
             </button>
@@ -140,9 +155,6 @@ const Register = () => {
               </Link>
             </p>
             {error && <p className="text-red-400 text-sm mt-0.5">{error}</p>}
-            {renderError("username")}
-            {renderError("email")}
-            {renderError("password")}
           </form>
         </div>
       </div>
