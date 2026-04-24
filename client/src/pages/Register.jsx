@@ -2,34 +2,64 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth.js";
 import { register, login } from "../api/auth.js";
+import { validateRegisterForm } from "../utils/validators/authValidators.js";
 
 const Register = () => {
-  const [username, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
   const [error, setError] = useState(null);
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
   const { login: authlogin } = useAuth();
   const navigate = useNavigate();
 
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setErrors({});
     setError(null);
 
-    try {
-      await register(username, email, password);
-      const { data: userData, token } = await login(email, password);
-      authlogin(userData, token);
+    const formErrors = validateRegisterForm(formData);
 
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      setLoading(false);
+      return;
+    }
+
+    try {
+      await register(formData.username, formData.email, formData.password);
+
+      const { data: userData, token } = await login(
+        formData.email,
+        formData.password,
+      );
+
+      authlogin(userData, token);
       navigate("/chat");
-    } catch (error) {
-      setError(error.message);
+    } catch (err) {
+      setError(err.message);
     } finally {
       setLoading(false);
     }
   };
+
+  const renderError = (field) =>
+    errors[field] && (
+      <p className="text-red-400 text-xs mt-1">{errors[field]}</p>
+    );
 
   return (
     <div
@@ -60,15 +90,13 @@ const Register = () => {
         <div className="flex-1 bg-[#313338] text-white p-8">
           <h1 className="text-2xl font-bold mb-2">Create an account</h1>
 
-          {error && <p className="text-red-400 text-sm mb-3">{error}</p>}
-
           <form onSubmit={handleSubmit}>
             {/* username */}
             <label className="text-xs text-gray-400">Username</label>
             <input
-              type="text"
-              value={username}
-              onChange={(e) => setUserName(e.target.value)}
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
               className="w-full mt-1 mb-4 px-3 py-2 rounded-md bg-[#1e1f22] 
             border border-gray-700 focus:outline-none focus:border-indigo-500"
             />
@@ -76,9 +104,10 @@ const Register = () => {
             {/* email */}
             <label className="text-xs text-gray-400">Email address</label>
             <input
+              name="email"
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formData.email}
+              onChange={handleChange}
               className="w-full mt-1 mb-4 px-3 py-2 rounded-md bg-[#1e1f22] 
             border border-gray-700 focus:outline-none focus:border-indigo-500"
             />
@@ -86,9 +115,10 @@ const Register = () => {
             {/* password */}
             <label className="text-xs text-gray-400">Password</label>
             <input
+              name="password"
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formData.password}
+              onChange={handleChange}
               className="w-full mt-1 mb-4 px-3 py-2 rounded-md bg-[#1e1f22] 
             border border-gray-700 focus:outline-none focus:border-indigo-500"
             />
@@ -109,6 +139,10 @@ const Register = () => {
                 Log in
               </Link>
             </p>
+            {error && <p className="text-red-400 text-sm mt-0.5">{error}</p>}
+            {renderError("username")}
+            {renderError("email")}
+            {renderError("password")}
           </form>
         </div>
       </div>
