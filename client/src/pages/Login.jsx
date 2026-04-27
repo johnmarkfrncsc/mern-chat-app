@@ -44,7 +44,10 @@ const Login = () => {
       authLogin(data.data, data.token);
       navigate("/chat");
     } catch (error) {
-      setError(error.message);
+      setErrors({
+        email: "Email or Password is invalid",
+        password: "Email or Password is invalid",
+      });
     } finally {
       setLoading(false);
     }
@@ -80,34 +83,27 @@ const Login = () => {
             {/* email */}
             <div className="relative mb-4">
               <label className="text-xs text-gray-400">Email *</label>
-
               <input
                 name="email"
                 type="email"
                 value={formData.email}
                 onChange={handleChange}
                 className="w-full mt-1 px-3 py-2 rounded-md bg-[#1e1f22]
-    border border-gray-700 focus:outline-none focus:border-indigo-500"
+                border border-gray-700 focus:outline-none focus:border-indigo-500"
               />
-
-              <p className="text-red-400 text-xs absolute left-0 top-full mt-1 h-4">
-                {errors.email || ""}
-              </p>
             </div>
 
             {/* password */}
             <div className="relative mb-4">
               <label className="text-xs text-gray-400">Password *</label>
-
               <input
                 name="password"
                 type="password"
                 value={formData.password}
                 onChange={handleChange}
                 className="w-full mt-1 px-3 py-2 rounded-md bg-[#1e1f22]
-    border border-gray-700 focus:outline-none focus:border-indigo-500"
+                border border-gray-700 focus:outline-none focus:border-indigo-500"
               />
-
               <p className="text-red-400 text-xs absolute left-0 top-full mt-1 h-4">
                 {errors.password || ""}
               </p>
@@ -133,7 +129,6 @@ const Login = () => {
                 Register
               </Link>
             </p>
-
             {error && <p className="text-red-400 text-sm mt-0.5">{error}</p>}
           </form>
         </div>
