@@ -1,7 +1,7 @@
 import UserModel from "../../models/UserModel.js";
 import cloudinary from "../../config/cloudinary.js";
 
-const Five_Days = 5 * 24 * 60 * 60 * 1000;
+const Ten_Seconds = 10 * 1000;
 
 const uploadPhoto = async (userId, fileBuffer) => {
   const user = await UserModel.findById(userId);
@@ -9,9 +9,9 @@ const uploadPhoto = async (userId, fileBuffer) => {
 
   if (
     user.lastPhotoChange &&
-    Date.now() - user.lastPhotoChange.getTime() < Five_Days
+    Date.now() - user.lastPhotoChange.getTime() < Ten_Seconds
   ) {
-    throw Error("You can only change profile photo once every five days");
+    throw Error("You can only change profile photo once every ten seconds");
   }
 
   //convert to base64, wrap in dataUri, upload to cloudinary
