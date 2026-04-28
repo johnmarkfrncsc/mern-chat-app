@@ -23,6 +23,8 @@ const SocketProvider = ({ children }) => {
 
     newSocket.on("connect", () => {
       console.log("Connected:", newSocket.id);
+
+      newSocket.emit("addUser", user._id);
     });
 
     newSocket.on("onlineUsers", (users) => {
