@@ -32,7 +32,7 @@ const uploadPhoto = async (userId, fileBuffer) => {
       profilePhoto: result.secure_url,
       lastPhotoChange: Date.now(),
     },
-    { new: true },
+    { returnDocument: "after" },
   );
 
   return updateProfile;
