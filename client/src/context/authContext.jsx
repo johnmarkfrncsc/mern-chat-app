@@ -3,37 +3,43 @@ import { createContext, useEffect, useState } from "react";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
-
-  useEffect(() => {
+  const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem("user");
-    const storedToken = localStorage.getItem("token");
-    if (storedToken && storedUser) {
-      setToken(storedToken);
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+
+  const [token, setToken] = useState(() => {
+    return localStorage.getItem("token") || null;
+  });
 
   const login = (userData, tokenData) => {
-    setToken(tokenData);
     setUser(userData);
+    setToken(tokenData);
 
-    localStorage.setItem("token", tokenData);
     localStorage.setItem("user", JSON.stringify(userData));
+    localStorage.setItem("token", tokenData);
   };
 
   const logout = () => {
-    setToken(null);
     setUser(null);
+    setToken(null);
 
-    localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
   };
 
-  const updateUser = (updatedUser) => {
-    setUser(updatedUser);
-    localStorage.setItem("user", JSON.stringify(updatedUser));
+  const updateUser = (updatedFields) => {
+    setUser((prev) => {
+      if (!prev) return prev;
+
+      const merged = {
+        ...prev,
+        ...updatedFields,
+      };
+
+      localStorage.setItem("user", JSON.stringify(merged));
+      return merged;
+    });
   };
 
   return (
