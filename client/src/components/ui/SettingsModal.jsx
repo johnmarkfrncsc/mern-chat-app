@@ -135,7 +135,7 @@ const SettingsModal = ({ onClose }) => {
 
           {/* Message */}
           {loading && <p className="text-gray-700 text-sm mt-4">Loading...</p>}
-          {message && <p className="text-green-400 text-sm mt-4">{message}</p>}
+          {message && <p className="text-teal-600 text-sm mt-4">{message}</p>}
         </div>
       </div>
     </div>
