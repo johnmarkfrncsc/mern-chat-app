@@ -64,6 +64,25 @@ const useConversation = () => {
     };
   }, [socket]);
 
+  // user last seen update
+  useEffect(() => {
+    if (!socket) return;
+
+    const handleUserLastSeen = ({ userId, lastSeen }) => {
+      setConversations((prev) =>
+        prev.map((conv) => ({
+          ...conv,
+          participants: conv.participants.map((p) =>
+            p._id === userId ? { ...p, lastSeen } : p,
+          ),
+        })),
+      );
+    };
+
+    socket.on("userLastSeen", handleUserLastSeen);
+    return () => socket.off("userLastSeen", handleUserLastSeen);
+  }, [socket]);
+
   // debouncing search
   useEffect(() => {
     if (!searchQuery) {
