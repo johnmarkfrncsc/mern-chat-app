@@ -1,5 +1,3 @@
-import useTimeAgo from "../../hooks/useTimeAgo.js";
-
 const ConversationItem = ({
   conv,
   otherUser,
@@ -10,7 +8,6 @@ const ConversationItem = ({
 }) => {
   const firstLetter = otherUser?.username.charAt(0).toUpperCase();
   const hasPhoto = otherUser?.profilePhoto && otherUser?.profilePhoto !== "";
-  const timeAgo = useTimeAgo(otherUser?.lastSeen);
 
   return (
     <>
@@ -42,9 +39,6 @@ const ConversationItem = ({
           <div className="flex flex-col min-w-0">
             <span className="text-black tracking-wide text-sm truncate">
               {otherUser?.username || "Unknown user"}
-            </span>
-            <span className="text-xs text-gray-400 truncate">
-              {isOnline ? "Online" : timeAgo || "Offline"}
             </span>
           </div>
         </div>
