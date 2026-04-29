@@ -33,12 +33,12 @@ const UserProfilePanel = ({ userId, onClose }) => {
   return (
     <div className="w-72 h-screen border-l border-[#E8E8E8] bg-[#FAFAFA] flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-[#E8E8E8]">
-        <span className="text-sm font-semibold text-gray-600">
+      <div className="flex items-center justify-between px-4 py-5.5 mb-0.5">
+        <span className="text-md font-semibold text-gray-600">
           User Profile
         </span>
         <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
-          <X size={18} />
+          <X size={20} />
         </button>
       </div>
 
@@ -69,7 +69,7 @@ const UserProfilePanel = ({ userId, onClose }) => {
             </div>
 
             {/* Username */}
-            <h3 className="text-base font-bold text-gray-800">
+            <h3 className="text-lg font-bold text-gray-800">
               {profile.username}
             </h3>
 
@@ -90,7 +90,7 @@ const UserProfilePanel = ({ userId, onClose }) => {
               <p className="text-xs font-semibold text-gray-400 uppercase mb-1">
                 Member Since
               </p>
-              <p className="text-sm text-gray-700">{memberSince}</p>
+              <p className="text-xs text-gray-700">{memberSince}</p>
             </div>
 
             {/* Mutuals */}
