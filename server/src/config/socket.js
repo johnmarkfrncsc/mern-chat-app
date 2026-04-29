@@ -21,14 +21,17 @@ const createSocketServer = (server) => {
       io.emit("onlineUsers", Object.keys(userSocketMap));
     });
 
-    socket.on("disconnect", () => {
+    socket.on("disconnect", async () => {
       for (const [userId, socketId] of Object.entries(userSocketMap)) {
         if (socketId === socket.id) {
           delete userSocketMap[userId];
+
+          await UserModel.findByIdAndUpdate(userId, { lastSeen: new Date() });
+
+          io.emit("userLastSeen", { userId, lastSeen: new Date() });
           break;
         }
       }
-
       io.emit("onlineUsers", Object.keys(userSocketMap));
     });
   });
