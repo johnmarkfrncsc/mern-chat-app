@@ -30,7 +30,7 @@ const MessageList = ({ messages }) => {
           >
             <div>
               <div
-                className={`max-w-xs px-4 py-1.5 shadow text-sm wrap-break-word whitespace-pre-wrap ${
+                className={`max-w-xs pl-3 pr-2.5 py-1.5 shadow text-sm text-center wrap-break-word whitespace-pre-wrap ${
                   isOwn
                     ? "bg-green-500 text-right border border-[#54cd84] text-white rounded-4xl rounded-br-md shadow-sm"
                     : "bg-[#FAFAFA] text-left border border-[#E8EAEC] text-gray-700 rounded-4xl rounded-bl-md shadow-sm"

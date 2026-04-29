@@ -95,7 +95,7 @@ const ConversationList = ({
           </div>
         </div>
       ) : (
-        <div className="w-20 bg-[#FFFFFF] text-black py-4">
+        <div className="w-20 bg-[#FFFFFF] text-black py-4 border-r border-[#EBEBEB]">
           <header className="flex justify-around">
             <button onClick={toggleSidebar}>
               <Plus />
