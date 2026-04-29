@@ -5,7 +5,7 @@ const getUserConversation = async (userId) => {
     const conversation = await ConversationModel.find({
       participants: userId,
     })
-      .populate("participants", "username email profilePhoto")
+      .populate("participants", "username email profilePhoto lastSeen")
       .populate("lastMessage", "text");
     return conversation;
   } catch (error) {
