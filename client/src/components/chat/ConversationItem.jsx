@@ -1,4 +1,4 @@
-import { useState } from "react";
+import useTimeAgo from "../../hooks/useTimeAgo.js";
 
 const ConversationItem = ({
   conv,
@@ -10,6 +10,7 @@ const ConversationItem = ({
 }) => {
   const firstLetter = otherUser?.username.charAt(0).toUpperCase();
   const hasPhoto = otherUser?.profilePhoto && otherUser?.profilePhoto !== "";
+  const timeAgo = useTimeAgo(otherUser?.lastSeen);
 
   return (
     <>
@@ -20,11 +21,11 @@ const ConversationItem = ({
           key={conv._id}
           onClick={onClick}
         >
-          <div className="relative w-8 h-8">
+          <div className="relative w-8 h-8 shrink-0">
             {hasPhoto ? (
               <img
                 src={otherUser?.profilePhoto}
-                className="w-8 h-8 rounded-lg object-cover"
+                className="w-8 h-8 rounded-full object-cover"
               />
             ) : (
               <div className="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-white">
@@ -32,15 +33,20 @@ const ConversationItem = ({
               </div>
             )}
             <div
-              className={`absolute bottom-0 right-0 w-3 h-3 rounded-full 
+              className={`absolute bottom-0 right-0.5 w-2 h-2 rounded-full 
                 ring-2 ring-[#DFE1E5]
                 ${isOnline ? "bg-green-500" : "bg-gray-500"}`}
             />
           </div>
 
-          <span className="text-black tracking-wide">
-            {otherUser?.username || "Unknown user"}
-          </span>
+          <div className="flex flex-col min-w-0">
+            <span className="text-black tracking-wide text-sm truncate">
+              {otherUser?.username || "Unknown user"}
+            </span>
+            <span className="text-xs text-gray-400 truncate">
+              {isOnline ? "Online" : timeAgo || "Offline"}
+            </span>
+          </div>
         </div>
       ) : (
         <div
@@ -50,10 +56,10 @@ const ConversationItem = ({
           {hasPhoto ? (
             <img
               src={otherUser?.profilePhoto}
-              className="w-10 h-10 rounded-lg object-cover"
+              className="w-10 h-10 rounded-full object-cover"
             />
           ) : (
-            <div className="w-10 h-10 rounded-xl text-amber-50 bg-indigo-500 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full text-amber-50 bg-indigo-500 flex items-center justify-center">
               {firstLetter}
             </div>
           )}
