@@ -37,7 +37,10 @@ const UserProfilePanel = ({ userId, onClose }) => {
         <span className="text-md font-semibold text-gray-600">
           User Profile
         </span>
-        <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+        <button
+          onClick={onClose}
+          className="text-gray-400 hover:text-gray-600 cursor-pointer"
+        >
           <X size={20} />
         </button>
       </div>
@@ -82,6 +85,12 @@ const UserProfilePanel = ({ userId, onClose }) => {
                 <p className="text-sm text-gray-700 wrap-break-word">
                   {profile.bio}
                 </p>
+                <div className="mt-3">
+                  <p className="text-xs font-semibold text-gray-400 uppercase mb-1">
+                    Member Since
+                  </p>
+                  <p className="text-xs text-gray-700">{memberSince}</p>
+                </div>
               </div>
             )}
 
