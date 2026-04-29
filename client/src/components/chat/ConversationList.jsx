@@ -78,6 +78,9 @@ const ConversationList = ({
                         setSelectedConversation({
                           id: conv._id,
                           username: otherUser?.username,
+                          profilePhoto: otherUser?.profilePhoto,
+                          lastSeen: otherUser?.lastSeen,
+                          isOnline: isOnline,
                         })
                       }
                     />
@@ -123,6 +126,9 @@ const ConversationList = ({
                       setSelectedConversation({
                         id: conv._id,
                         username: otherUser?.username,
+                        profilePhoto: otherUser?.profilePhoto,
+                        lastSeen: otherUser?.lastSeen,
+                        isOnline: isOnline,
                       })
                     }
                   />
