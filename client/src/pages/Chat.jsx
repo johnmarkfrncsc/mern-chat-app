@@ -9,6 +9,7 @@ const Chat = () => {
   const { socket } = useContext(SocketContext);
   const timeAgo = useTimeAgo(selectedConversation?.lastSeen);
 
+  //header refresh
   useEffect(() => {
     if (!socket || !selectedConversation) return;
 
@@ -43,18 +44,33 @@ const Chat = () => {
 
       <div className="flex flex-col flex-1 bg-[#FFFFFF]">
         {/* Header */}
-        <nav className="bg-[#FAFAFA] border-b border-[#E8E8E8] p-4 flex items-center">
+        <nav className="bg-[#FAFAFA] border-b border-[#E8E8E8] p-4 flex items-center gap-2">
           {selectedConversation ? (
-            <div className="flex flex-col">
-              <h3 className="text-[#2C5B52] text-lg font-semibold tracking-wide">
-                {selectedConversation.username}
-              </h3>
-              <span className="text-xs text-gray-400">
-                {selectedConversation.isOnline
-                  ? "Online"
-                  : timeAgo || "Offline"}
-              </span>
-            </div>
+            <>
+              <div className="relative w-9 h-9 shrink-0">
+                {selectedConversation.profilePhoto ? (
+                  <img
+                    src={selectedConversation.profilePhoto}
+                    className="w-9 h-9 rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="w-9 h-9 rounded-full bg-indigo-500 flex items-center justify-center text-white text-sm">
+                    {selectedConversation.username?.charAt(0).toUpperCase()}
+                  </div>
+                )}
+              </div>
+
+              <div className="flex flex-col">
+                <h3 className="text-[#2C5B52] text-lg font-semibold tracking-wide leading-tight">
+                  {selectedConversation.username}
+                </h3>
+                <span className="text-xs text-gray-400">
+                  {selectedConversation.isOnline
+                    ? "Online"
+                    : timeAgo || "Offline"}
+                </span>
+              </div>
+            </>
           ) : (
             <h3 className="text-[#2C5B52] text-lg font-semibold tracking-wide">
               Select a conversation
