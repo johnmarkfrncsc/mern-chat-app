@@ -4,6 +4,7 @@ import upload from "../middleware/multer.js";
 import changeUsernameController from "../controllers/user/ChangeUsernameController.js";
 import changePasswordController from "../controllers/user/ChangePasswordController.js";
 import uploadPhotoController from "../controllers/user/UploadPhotoController.js";
+import changeBioController from "../controllers/user/changeBioController.js";
 
 const router = express.Router();
 
@@ -15,5 +16,6 @@ router.put(
   upload.single("photo"),
   uploadPhotoController,
 );
+router.put("/bio", protectRoute, changeBioController);
 
 export default router;
