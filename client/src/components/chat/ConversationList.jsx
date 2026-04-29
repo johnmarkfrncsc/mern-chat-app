@@ -77,6 +77,7 @@ const ConversationList = ({
                       onClick={() =>
                         setSelectedConversation({
                           id: conv._id,
+                          userId: otherUser?._id,
                           username: otherUser?.username,
                           profilePhoto: otherUser?.profilePhoto,
                           lastSeen: otherUser?.lastSeen,
@@ -125,6 +126,7 @@ const ConversationList = ({
                     onClick={() =>
                       setSelectedConversation({
                         id: conv._id,
+                        userId: otherUser?._id,
                         username: otherUser?.username,
                         profilePhoto: otherUser?.profilePhoto,
                         lastSeen: otherUser?.lastSeen,
