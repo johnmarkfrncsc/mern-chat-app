@@ -24,4 +24,9 @@ const uploadPhoto = async (file) => {
   return response.data;
 };
 
-export { changePassword, changeUsername, uploadPhoto };
+const changeBio = async (bio) => {
+  const response = await api.put("/settings/bio", { bio });
+  return response.data;
+};
+
+export { changePassword, changeUsername, uploadPhoto, changeBio };
