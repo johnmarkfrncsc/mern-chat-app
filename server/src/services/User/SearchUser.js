@@ -5,7 +5,7 @@ const searchUser = async (username, currentUserId) => {
     const user = await UserModel.find({
       username: { $regex: username, $options: "i" },
       _id: { $ne: currentUserId },
-    }).select("username email");
+    }).select("username email profilePhoto");
     return user;
   } catch (error) {
     throw error;

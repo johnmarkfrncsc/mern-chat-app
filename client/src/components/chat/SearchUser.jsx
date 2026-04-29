@@ -33,9 +33,22 @@ const SearchUser = ({
               <div
                 key={user._id}
                 onClick={() => handleSelectUser(user._id)}
-                className="px-3 py-2 text-sm font-medium text-[#6A6A6A] cursor-pointer hover:bg-[#F7F7F7]"
+                className="flex items-center gap-2 px-3 py-2 text-sm cursor-pointer hover:bg-[#F7F7F7]"
               >
-                {user.username}
+                {user.profilePhoto ? (
+                  <img
+                    src={user.profilePhoto}
+                    className="w-7 h-7 rounded-full object-cover shrink-0"
+                  />
+                ) : (
+                  <div className="w-7 h-7 rounded-full bg-indigo-500 flex items-center justify-center text-white text-xs shrink-0">
+                    {user.username.charAt(0).toUpperCase()}
+                  </div>
+                )}
+
+                <span className="font-medium text-[#6A6A6A]">
+                  {user.username}
+                </span>
               </div>
             ))
           ) : (
