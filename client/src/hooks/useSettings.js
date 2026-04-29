@@ -11,12 +11,14 @@ const useSettings = () => {
     currentPassword: "",
     newPassword: "",
     photo: null,
+    bio: "",
   });
 
   const sections = [
     { key: "username", label: "Change Username" },
     { key: "password", label: "Change Password" },
     { key: "photo", label: "Upload Profile" },
+    { key: "bio", label: "Edit Bio" },
   ];
 
   const { updateUser } = useAuth();

@@ -4,6 +4,7 @@ import useSettings from "../../hooks/useSettings.js";
 import UsernameForm from "../ui/settings/UsernameForm.jsx";
 import PasswordForm from "../ui/settings/PasswordForm.jsx";
 import UploadForm from "../ui/settings/UploadForm.jsx";
+import BioForm from "../ui/settings/BioForm.jsx";
 import { AuthContext } from "../../context/authContext.jsx";
 import { useNavigate } from "react-router-dom";
 
@@ -125,6 +126,16 @@ const SettingsModal = ({ onClose }) => {
           {/* Photo Form */}
           {activeSection === "photo" && (
             <UploadForm
+              formData={formData}
+              updateField={updateField}
+              handleSubmit={handleSubmit}
+              loading={loading}
+              message={message}
+            />
+          )}
+
+          {activeSection === "bio" && (
+            <BioForm
               formData={formData}
               updateField={updateField}
               handleSubmit={handleSubmit}
