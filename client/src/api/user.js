@@ -5,4 +5,9 @@ const searchUsers = async (username) => {
   return response.data;
 };
 
-export default searchUsers;
+const getUserProfile = async (userId) => {
+  const response = await api.get(`/profile/${userId}`);
+  return response.data;
+};
+
+export { searchUsers, getUserProfile };

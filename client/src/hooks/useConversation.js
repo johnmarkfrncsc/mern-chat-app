@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { getUserConversations, createConversation } from "../api/chat.js";
-import searchUsers from "../api/user.js";
+import { searchUsers } from "../api/user.js";
 import useChat from "./useChat.js";
 
 const useConversation = () => {
