@@ -38,6 +38,11 @@ const UserModel = new mongoose.Schema(
       type: Date,
       default: null,
     },
+    bio: {
+      type: String,
+      default: "",
+      maxlength: 190,
+    },
   },
   {
     timestamps: true,
