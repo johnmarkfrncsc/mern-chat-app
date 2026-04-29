@@ -21,6 +21,7 @@ const useConversation = () => {
     load();
   }, []);
 
+  // new conversation
   useEffect(() => {
     if (!socket) return;
 
@@ -38,6 +39,28 @@ const useConversation = () => {
 
     return () => {
       socket.off("newConversation", handleNewConversation);
+    };
+  }, [socket]);
+
+  // profile photo update
+  useEffect(() => {
+    if (!socket) return;
+
+    const handleUserUpdated = ({ _id, profilePhoto, username }) => {
+      setConversations((prev) =>
+        prev.map((conv) => ({
+          ...conv,
+          participants: conv.participants.map((p) =>
+            p._id === _id ? { ...p, profilePhoto, username } : p,
+          ),
+        })),
+      );
+    };
+
+    socket.on("userUpdated", handleUserUpdated);
+
+    return () => {
+      socket.off("userUpdated", handleUserUpdated);
     };
   }, [socket]);
 
