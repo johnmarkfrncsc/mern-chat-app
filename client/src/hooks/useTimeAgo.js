@@ -1,0 +1,12 @@
+const useTimeAgo = (date) => {
+  if (!date) return null;
+
+  const seconds = Math.floor((Date.now() - new Date(date).getTime()) / 1000);
+
+  if (seconds < 60) return "active just now";
+  if (seconds < 3600) return `active ${Math.floor(seconds / 60)}m ago`;
+  if (seconds < 86400) return `active ${Math.floor(seconds / 3600)}h ago`;
+  return `active ${Math.floor(seconds / 86400)}d ago`;
+};
+
+export default useTimeAgo;
