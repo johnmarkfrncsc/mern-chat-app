@@ -2,16 +2,22 @@ import ConversationModel from "../../models/ConversationModel.js";
 
 const createConversation = async (senderId, receiverId) => {
   try {
-    const existingConversation = await ConversationModel.findOne({
+    let conversation = await ConversationModel.findOne({
       participants: { $all: [senderId, receiverId] },
     });
-    if (!existingConversation) {
-      const newConversation = await ConversationModel.create({
+
+    if (!conversation) {
+      conversation = await ConversationModel.create({
         participants: [senderId, receiverId],
       });
-      return newConversation;
     }
-    return existingConversation;
+
+    const populated = await conversation.populate(
+      "participants",
+      "username email profilePhoto",
+    );
+
+    return populated;
   } catch (error) {
     throw error;
   }
