@@ -39,7 +39,7 @@ const useSettings = () => {
       }
       setMessage(successText);
     } catch (error) {
-      setMessage(error.message);
+      setMessage(error.response?.data?.message || error.message);
     } finally {
       setLoading(false);
     }
