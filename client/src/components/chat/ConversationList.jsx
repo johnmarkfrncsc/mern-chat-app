@@ -35,13 +35,13 @@ const ConversationList = ({
   return (
     <>
       {isOpen ? (
-        <div className="w-64 h-screen bg-[#FFFFFF] text-black py-4 flex flex-col justify-between border-r border-[#EBEBEB]">
+        <div className="w-full h-screen bg-[#FFFFFF] text-black py-4 flex flex-col justify-between border-r border-[#EBEBEB]">
           <div>
-            <header className="flex justify-around">
+            <header className="flex justify-center md:justify-around items-center px-4">
               <h2 className="text-xl font-bold font-serif text-[#29665B]">
                 Next chat
               </h2>
-              <button onClick={toggleSidebar}>
+              <button onClick={toggleSidebar} className="hidden md:block">
                 <Plus />
               </button>
             </header>
