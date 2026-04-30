@@ -1,33 +1,53 @@
 import ChatBox from "../components/chat/ChatBox.jsx";
 import ConversationList from "../components/chat/ConversationList.jsx";
 import UserProfilePanel from "../components/chat/UserProfilePannel.jsx";
-import { useState, useContext, useEffect } from "react";
+import ChatHeader from "../components/chat/ChatHeader.jsx";
+import { useState, useContext, useEffect, useRef } from "react";
 import { SocketContext } from "../context/socketContext.jsx";
 import useTimeAgo from "../hooks/useTimeAgo.js";
-import { Ellipsis } from "lucide-react";
 
 const Chat = () => {
   const [selectedConversation, setSelectedConversation] = useState(null);
   const [showProfile, setShowProfile] = useState(false);
+  const [mobileView, setMobileView] = useState("list");
   const { socket } = useContext(SocketContext);
   const timeAgo = useTimeAgo(selectedConversation?.lastSeen);
 
-  // close panel when switching conversations
+  const touchStartX = useRef(null);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const diff = e.changedTouches[0].clientX - touchStartX.current;
+    if (diff > 60 && mobileView === "chat") {
+      setMobileView("list");
+      setShowProfile(false);
+    }
+    touchStartX.current = null;
+  };
+
+  const handleSelectConversation = (conv) => {
+    setSelectedConversation(conv);
+    setMobileView("chat");
+  };
+
   useEffect(() => {
     setShowProfile(false);
   }, [selectedConversation?.id]);
 
-  //header refresh
   useEffect(() => {
     if (!socket || !selectedConversation) return;
 
     const handleOnlineUsers = (users) => {
-      const isOnline = users.includes(selectedConversation.id);
+      const isOnline = users.includes(selectedConversation.userId);
       setSelectedConversation((prev) => (prev ? { ...prev, isOnline } : prev));
     };
 
     const handleUserLastSeen = ({ userId, lastSeen }) => {
-      if (userId === selectedConversation.id) {
+      if (userId === selectedConversation.userId) {
         setSelectedConversation((prev) =>
           prev ? { ...prev, lastSeen, isOnline: false } : prev,
         );
@@ -44,58 +64,38 @@ const Chat = () => {
   }, [socket, selectedConversation?.id]);
 
   return (
-    <div className="h-screen flex overflow-hidden">
-      <ConversationList
-        setSelectedConversation={setSelectedConversation}
-        selectedConversation={selectedConversation}
-      />
+    <div
+      className="h-screen flex overflow-hidden"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Conversation List */}
+      <div
+        className={`shrink-0 w-full md:w-auto ${mobileView === "chat" ? "hidden" : "flex"} md:flex`}
+      >
+        <ConversationList
+          setSelectedConversation={handleSelectConversation}
+          selectedConversation={selectedConversation}
+        />
+      </div>
 
-      <div className="flex flex-col flex-1 bg-[#FFFFFF] min-w-0">
-        {/* Header */}
+      {/* Chat area */}
+      <div
+        className={`flex flex-col flex-1 bg-[#FFFFFF] min-w-0 ${mobileView === "list" ? "hidden" : "flex"} md:flex`}
+      >
         <nav className="bg-[#FAFAFA] border-b border-[#E8E8E8] p-4 flex items-center gap-2">
-          {selectedConversation ? (
-            <>
-              <div className="relative w-9 h-9 shrink-0">
-                {selectedConversation.profilePhoto ? (
-                  <img
-                    src={selectedConversation.profilePhoto}
-                    className="w-9 h-9 rounded-full object-cover"
-                  />
-                ) : (
-                  <div className="w-9 h-9 rounded-full bg-indigo-500 flex items-center justify-center text-white text-sm">
-                    {selectedConversation.username?.charAt(0).toUpperCase()}
-                  </div>
-                )}
-              </div>
-
-              <div className="flex flex-col flex-1">
-                <h3 className="text-[#2C5B52] text-lg font-semibold tracking-wide leading-tight">
-                  {selectedConversation.username}
-                </h3>
-                <span className="text-xs text-gray-400">
-                  {selectedConversation.isOnline
-                    ? "Online"
-                    : timeAgo || "Offline"}
-                </span>
-              </div>
-
-              {/* Icon button */}
-              <button
-                onClick={() => setShowProfile((prev) => !prev)}
-                className={`p-1.5 rounded-md transition cursor-pointer
-                  ${showProfile ? "bg-[#EFEFEF] text-[#2C5B52]" : "text-gray-400 hover:text-[#2C5B52] hover:bg-[#EFEFEF]"}`}
-              >
-                <Ellipsis size={20} />
-              </button>
-            </>
-          ) : (
-            <h3 className="text-[#2C5B52] text-lg font-semibold tracking-wide">
-              Select a conversation
-            </h3>
-          )}
+          <ChatHeader
+            selectedConversation={selectedConversation}
+            timeAgo={timeAgo}
+            showProfile={showProfile}
+            setShowProfile={setShowProfile}
+            onBack={() => {
+              setMobileView("list");
+              setShowProfile(false);
+            }}
+          />
         </nav>
 
-        {/* Chat area */}
         <div className="flex-1 overflow-hidden">
           {selectedConversation?.id ? (
             <ChatBox conversationId={selectedConversation?.id} />
@@ -109,10 +109,16 @@ const Chat = () => {
 
       {/* Profile Panel */}
       {showProfile && selectedConversation && (
-        <UserProfilePanel
-          userId={selectedConversation.userId}
-          onClose={() => setShowProfile(false)}
-        />
+        <div className="fixed inset-0 z-50 md:static md:inset-auto md:z-auto flex">
+          <div
+            className="flex-1 bg-black/40 md:hidden"
+            onClick={() => setShowProfile(false)}
+          />
+          <UserProfilePanel
+            userId={selectedConversation.userId}
+            onClose={() => setShowProfile(false)}
+          />
+        </div>
       )}
     </div>
   );
