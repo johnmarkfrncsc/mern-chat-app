@@ -7,7 +7,7 @@ import useConversation from "../../../hooks/useConversation.js";
 import SearchUser from "../SearchUser.jsx";
 import ConversationItem from "./ConversationItem.jsx";
 import UserCard from "../../ui/UserCard.jsx";
-import SettingsModal from "../../ui/SettingsModal.jsx";
+import Settings from "../../ui/Settings.jsx";
 import ConversationSkeleton from "./ConversationSkeleton.jsx";
 
 const ConversationList = ({
@@ -100,7 +100,7 @@ const ConversationList = ({
           <div className="mx-2 my-2">
             <UserCard onSettingsClick={() => setIsSettingsOpen(true)} />
             {isSettingsOpen && (
-              <SettingsModal onClose={() => setIsSettingsOpen(false)} />
+              <Settings onClose={() => setIsSettingsOpen(false)} />
             )}
           </div>
         </div>
