@@ -8,6 +8,7 @@ import SearchUser from "./SearchUser.jsx";
 import ConversationItem from "./ConversationItem.jsx";
 import UserCard from "../ui/UserCard.jsx";
 import SettingsModal from "../ui/SettingsModal.jsx";
+import ConversationSkeleton from "./ConversationSkeleton.jsx";
 
 const ConversationList = ({
   setSelectedConversation,
@@ -20,6 +21,7 @@ const ConversationList = ({
     searchResult,
     handleSelectUser,
     containerRef,
+    loading,
   } = useConversation();
 
   const [isOpen, setIsopen] = useState(true);
@@ -61,32 +63,36 @@ const ConversationList = ({
 
               {/* map convo list */}
               <div className="mt-4 flex flex-col gap-1">
-                {conversations.map((conv) => {
-                  const otherUser = conv.participants.find(
-                    (p) => p._id !== user?._id,
-                  );
-                  const isOnline = onlineUsers.includes(otherUser?._id);
-                  return (
-                    <ConversationItem
-                      key={conv._id}
-                      conv={conv}
-                      otherUser={otherUser}
-                      isOnline={isOnline}
-                      isOpen={isOpen}
-                      isSelected={selectedConversation?.id === conv._id}
-                      onClick={() =>
-                        setSelectedConversation({
-                          id: conv._id,
-                          userId: otherUser?._id,
-                          username: otherUser?.username,
-                          profilePhoto: otherUser?.profilePhoto,
-                          lastSeen: otherUser?.lastSeen,
-                          isOnline: isOnline,
-                        })
-                      }
-                    />
-                  );
-                })}
+                {loading
+                  ? Array.from({ length: 4 }).map((_, i) => (
+                      <ConversationSkeleton key={i} />
+                    ))
+                  : conversations.map((conv) => {
+                      const otherUser = conv.participants.find(
+                        (p) => p._id !== user?._id,
+                      );
+                      const isOnline = onlineUsers.includes(otherUser?._id);
+                      return (
+                        <ConversationItem
+                          key={conv._id}
+                          conv={conv}
+                          otherUser={otherUser}
+                          isOnline={isOnline}
+                          isOpen={isOpen}
+                          isSelected={selectedConversation?.id === conv._id}
+                          onClick={() =>
+                            setSelectedConversation({
+                              id: conv._id,
+                              userId: otherUser?._id,
+                              username: otherUser?.username,
+                              profilePhoto: otherUser?.profilePhoto,
+                              lastSeen: otherUser?.lastSeen,
+                              isOnline: isOnline,
+                            })
+                          }
+                        />
+                      );
+                    })}
               </div>
             </nav>
           </div>
