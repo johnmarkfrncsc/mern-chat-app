@@ -8,7 +8,7 @@ import useTimeAgo from "../hooks/useTimeAgo.js";
 
 const Chat = () => {
   const [selectedConversation, setSelectedConversation] = useState(null);
-  const [showProfile, setShowProfile] = useState(false);
+  const [showProfile, setShowProfile] = useState(window.innerWidth >= 1024);
   const [mobileView, setMobileView] = useState("list");
   const { socket } = useContext(SocketContext);
   const timeAgo = useTimeAgo(selectedConversation?.lastSeen);
@@ -35,7 +35,7 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    setShowProfile(false);
+    setShowProfile(window.innerWidth >= 1024);
   }, [selectedConversation?.id]);
 
   useEffect(() => {
