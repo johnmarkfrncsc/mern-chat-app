@@ -46,8 +46,28 @@ const UserProfilePanel = ({ userId, onClose }) => {
       </div>
 
       {loading ? (
-        <div className="flex-1 flex items-center justify-center text-sm text-gray-400">
-          Loading...
+        <div className="flex-1 animate-pulse">
+          {/* Banner */}
+          <div className="bg-gray-200 h-20 w-full" />
+          <div className="px-4 pb-4">
+            {/* Avatar */}
+            <div className="-mt-8 mb-3">
+              <div className="w-16 h-16 rounded-full bg-gray-300 ring-4 ring-[#FAFAFA]" />
+            </div>
+            {/* Username */}
+            <div className="h-4 bg-gray-200 rounded w-32 mb-1" />
+            {/* Bio block */}
+            <div className="mt-3 bg-white border border-[#E8E8E8] rounded-lg p-3 flex flex-col gap-2">
+              <div className="h-3 bg-gray-200 rounded w-16" />
+              <div className="h-3 bg-gray-200 rounded w-full" />
+              <div className="h-3 bg-gray-200 rounded w-3/4" />
+            </div>
+            {/* Member since block */}
+            <div className="mt-3 bg-white border border-[#E8E8E8] rounded-lg p-3 flex flex-col gap-2">
+              <div className="h-3 bg-gray-200 rounded w-24" />
+              <div className="h-3 bg-gray-200 rounded w-32" />
+            </div>
+          </div>
         </div>
       ) : !profile ? (
         <div className="flex-1 flex items-center justify-center text-sm text-gray-400">
