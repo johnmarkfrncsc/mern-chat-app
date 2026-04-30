@@ -1,5 +1,5 @@
 import ChatBox from "../components/chat/ChatBox.jsx";
-import ConversationList from "../components/chat/ConversationList.jsx";
+import ConversationList from "../components/chat/conversation/ConversationList.jsx";
 import UserProfilePanel from "../components/chat/UserProfilePannel.jsx";
 import ChatHeader from "../components/chat/ChatHeader.jsx";
 import { useState, useContext, useEffect, useRef } from "react";

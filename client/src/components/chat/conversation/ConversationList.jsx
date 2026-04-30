@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Plus } from "lucide-react";
-import useAuth from "../../hooks/useAuth.js";
-import useChat from "../../hooks/useChat.js";
-import useConversation from "../../hooks/useConversation.js";
-import SearchUser from "./SearchUser.jsx";
+import useAuth from "../../../hooks/useAuth.js";
+import useChat from "../../../hooks/useChat.js";
+import useConversation from "../../../hooks/useConversation.js";
+import SearchUser from "../SearchUser.jsx";
 import ConversationItem from "./ConversationItem.jsx";
-import UserCard from "../ui/UserCard.jsx";
-import SettingsModal from "../ui/SettingsModal.jsx";
+import UserCard from "../../ui/UserCard.jsx";
+import SettingsModal from "../../ui/SettingsModal.jsx";
 import ConversationSkeleton from "./ConversationSkeleton.jsx";
 
 const ConversationList = ({
