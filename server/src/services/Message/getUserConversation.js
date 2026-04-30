@@ -6,7 +6,8 @@ const getUserConversation = async (userId) => {
       participants: userId,
     })
       .populate("participants", "username email profilePhoto lastSeen")
-      .populate("lastMessage", "text");
+      .populate("lastMessage", "text")
+      .sort({ updatedAt: -1 });
     return conversation;
   } catch (error) {
     throw error;
