@@ -83,6 +83,25 @@ const useConversation = () => {
     return () => socket.off("userLastSeen", handleUserLastSeen);
   }, [socket]);
 
+  // last message update
+  useEffect(() => {
+    if (!socket) return;
+
+    const handleConversationUpdated = (updatedConversation) => {
+      setConversations((prev) => {
+        const exists = prev.find((c) => c._id === updatedConversation._id);
+        if (!exists) return prev;
+
+        // move updated conversation to top with new lastMessage
+        const filtered = prev.filter((c) => c._id !== updatedConversation._id);
+        return [updatedConversation, ...filtered];
+      });
+    };
+
+    socket.on("conversationUpdated", handleConversationUpdated);
+    return () => socket.off("conversationUpdated", handleConversationUpdated);
+  }, [socket]);
+
   // debouncing search
   useEffect(() => {
     if (!searchQuery) {
