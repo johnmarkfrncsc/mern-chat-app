@@ -31,7 +31,7 @@ const UserProfilePanel = ({ userId, onClose }) => {
     : null;
 
   return (
-    <div className="w-72 h-screen border-l border-[#E8E8E8] bg-[#FAFAFA] flex flex-col">
+    <div className="w-60 lg:w-72 h-screen border-l border-[#E8E8E8] bg-[#FAFAFA] flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-5.5 mb-0.5">
         <span className="text-md font-semibold text-gray-600">
@@ -113,14 +113,6 @@ const UserProfilePanel = ({ userId, onClose }) => {
                 </div>
               </div>
             )}
-
-            {/* Member since */}
-            <div className="mt-3 bg-white border border-[#E8E8E8] rounded-lg p-3">
-              <p className="text-xs font-semibold text-gray-400 uppercase mb-1">
-                Member Since
-              </p>
-              <p className="text-xs text-gray-700">{memberSince}</p>
-            </div>
 
             {/* Mutuals */}
             {profile.mutuals?.length > 0 && (
