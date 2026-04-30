@@ -8,6 +8,7 @@ const useConversation = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [conversations, setConversations] = useState([]);
   const containerRef = useRef(null);
+  const [loading, setLoading] = useState(true);
 
   const { socket } = useChat();
 
@@ -132,6 +133,16 @@ const useConversation = () => {
     };
   }, []);
 
+  //loading state
+  useEffect(() => {
+    const load = async () => {
+      const res = await getUserConversations();
+      setConversations(res.data);
+      setLoading(false);
+    };
+    load();
+  }, []);
+
   const handleSelectUser = async (userId) => {
     await createConversation(userId);
 
@@ -149,6 +160,7 @@ const useConversation = () => {
     searchResult,
     handleSelectUser,
     containerRef,
+    loading,
   };
 };
 
