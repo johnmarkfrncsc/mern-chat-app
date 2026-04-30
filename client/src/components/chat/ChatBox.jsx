@@ -7,6 +7,7 @@ import useChat from "../../hooks/useChat.js";
 
 const ChatBox = ({ conversationId, senderId }) => {
   const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const { user } = useAuth();
   const { socket } = useChat();
@@ -14,8 +15,10 @@ const ChatBox = ({ conversationId, senderId }) => {
   // load msg
   useEffect(() => {
     const fetchMessages = async () => {
+      setLoading(true);
       const res = await getMessages(conversationId, senderId);
       setMessages(res.data);
+      setLoading(false);
     };
 
     if (conversationId) fetchMessages();
@@ -30,23 +33,17 @@ const ChatBox = ({ conversationId, senderId }) => {
     };
 
     socket.on("newMessage", handleNewMessage);
-
-    return () => {
-      socket.off("newMessage", handleNewMessage);
-    };
+    return () => socket.off("newMessage", handleNewMessage);
   }, [socket]);
 
   // join conversation
   useEffect(() => {
     if (!socket || !conversationId) return;
-
     socket.emit("joinRoom", conversationId);
   }, [socket, conversationId]);
 
-  //send msg
   const handleSend = async (text) => {
     if (!text.trim()) return;
-
     socket.emit("sendMessage", {
       conversationId,
       senderId: user._id,
@@ -56,13 +53,10 @@ const ChatBox = ({ conversationId, senderId }) => {
 
   return (
     <div className="flex flex-col h-full">
-      {/* Messages */}
       <div className="flex-1 overflow-y-auto scrollbar">
-        <MessageList messages={messages} />
+        <MessageList messages={messages} loading={loading} />
       </div>
-
-      {/* Input */}
-      <div className="pt-2 ">
+      <div className="pt-2">
         <MessageInput onSend={handleSend} />
       </div>
     </div>
