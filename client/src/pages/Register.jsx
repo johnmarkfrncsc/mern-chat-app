@@ -64,42 +64,28 @@ const Register = () => {
   return (
     <div
       className="min-h-screen flex items-center justify-center relative overflow-hidden
-    bg-linear-to-br from-[#2b2d31] via-[#1e1f22] to-[#5865F2]"
+    bg-linear-to-br from-[#FFFFFF] via-teal-100 to-[#29665B]"
     >
-      {/* Background glow effects */}
-      <div className="absolute w-125 h-125 bg-purple-600 opacity-30 blur-3xl rounded-full -top-25 -left-25" />
-      <div className="absolute w-100 h-100 bg-indigo-500 opacity-30 blur-3xl rounded-full -bottom-25 -right-25" />
-
       {/* Card Container */}
-      <div className="relative z-10 w-full max-w-5xl rounded-xl shadow-2xl overflow-hidden flex">
-        {/* left: (gradient visual panel) */}
-        <div className="hidden md:flex flex-1 items-center justify-center relative">
-          {/* extra glow inside panel */}
-          <div className="absolute w-96 h-96 bg-indigo-500 opacity-20 blur-3xl rounded-full" />
-          <div className="absolute w-80 h-80 bg-purple-500 opacity-20 blur-3xl rounded-full top-20 left-10" />
-
-          <div className="relative text-center px-6">
-            <h2 className="text-3xl font-bold text-white mb-3">Join Us 🚀</h2>
-            <p className="text-gray-300">
-              Create your account and start your journey with us.
-            </p>
-          </div>
-        </div>
-
+      <div className="relative z-10 w-100 rounded-xl shadow-2xl overflow-hidden flex">
         {/* right: (form) */}
-        <div className="flex-1 bg-[#313338] text-white p-8">
-          <h1 className="text-2xl font-bold mb-2">Create an account</h1>
+        <div className="flex-1 bg-white p-8">
+          <h1 className="text-2xl font-bold mb-2 text-[#29665B]">
+            Create an account
+          </h1>
 
           <form onSubmit={handleSubmit}>
             {/* username */}
             <div className="relative mb-4">
-              <label className="text-xs text-gray-400">Username</label>
+              <label className="text-xs  font-medium text-gray-400">
+                Username
+              </label>
               <input
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
-                className="w-full mt-1 px-3 py-2 rounded-md bg-[#1e1f22]
-                border border-gray-700 focus:outline-none focus:border-indigo-500"
+                className="w-full mt-1 px-3 py-2 rounded-md
+                border border-gray-700 focus:outline-none focus:border-teal-600"
               />
               <p className="text-red-400 text-xs absolute left-0 top-full mt-1 h-4">
                 {errors.username || ""}
@@ -108,14 +94,16 @@ const Register = () => {
 
             {/* email */}
             <div className="relative mb-4 pt-2">
-              <label className="text-xs text-gray-400">Email address</label>
+              <label className="text-xs font-medium text-gray-400">
+                Email address
+              </label>
               <input
                 name="email"
                 type="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full mt-1 px-3 py-2 rounded-md bg-[#1e1f22]
-                border border-gray-700 focus:outline-none focus:border-indigo-500"
+                className="w-full mt-1 px-3 py-2 rounded-md
+                border border-gray-700 focus:outline-none focus:border-teal-600"
               />
               <p className="text-red-400 text-xs absolute left-0 top-full mt-1 h-4">
                 {errors.email || ""}
@@ -124,14 +112,16 @@ const Register = () => {
 
             {/* password */}
             <div className="relative mb-4 pt-2">
-              <label className="text-xs text-gray-400">Password</label>
+              <label className="text-xs font-medium text-gray-400">
+                Password
+              </label>
               <input
                 name="password"
                 type="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full mt-1 px-3 py-2 rounded-md bg-[#1e1f22]
-                border border-gray-700 focus:outline-none focus:border-indigo-500"
+                className="w-full mt-1 px-3 py-2 rounded-md
+                border border-gray-700 focus:outline-none focus:border-teal-600"
               />
               <p className="text-red-400 text-xs absolute left-0 top-full mt-1 h-4">
                 {errors.password || ""}
@@ -142,15 +132,15 @@ const Register = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#5865F2] hover:bg-[#4752C4] 
+              className="w-full bg-teal-700 hover:bg-[#29665B] text-white
             transition py-2 mt-4 rounded-md font-semibold mb-4 cursor-pointer disabled:opacity-50"
             >
               {loading ? "Creating..." : "Create account"}
             </button>
 
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-gray-500">
               Already have an account?{" "}
-              <Link to="/login" className="text-indigo-400">
+              <Link to="/login" className="text-[#29665B] font-medium">
                 Log in
               </Link>
             </p>
