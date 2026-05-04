@@ -69,10 +69,17 @@ const Login = () => {
         rounded-xl shadow-2xl p-8 flex gap-10"
       >
         <div className="flex-1 relative">
-          <h1 className="text-2xl font-bold text-center mb-2">Welcome back!</h1>
-          <p className="text-gray-400 text-center mb-6">
-            We're so excited to see you again!
-          </p>
+          <div className="flex flex-col items-center mb-6">
+            <div className="w-16 h-16 flex items-center justify-center">
+              <img src="logo.svg" alt="" />
+            </div>
+            <h1 className="text-2xl font-bold text-center mb-2">
+              Welcome back!
+            </h1>
+            <p className="text-gray-400 text-center">
+              We're so excited to see you again!
+            </p>
+          </div>
 
           <form onSubmit={handleSubmit}>
             {/* email */}
