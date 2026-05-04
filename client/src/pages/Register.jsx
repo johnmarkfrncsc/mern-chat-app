@@ -70,9 +70,24 @@ const Register = () => {
       <div className="relative z-10 w-100 rounded-xl shadow-2xl overflow-hidden flex">
         {/* right: (form) */}
         <div className="flex-1 bg-white p-8">
-          <h1 className="text-2xl font-bold mb-2 text-[#29665B]">
-            Create an account
-          </h1>
+          {/* logo header */}
+          <div className="flex flex-col items-center mb-4">
+            <div className="w-16 h-16 flex items-center justify-center mb-3">
+              <img
+                src="logo.svg"
+                alt="logo"
+                className="w-full h-full object-contain"
+              />
+            </div>
+
+            <h1 className="text-2xl font-bold text-[#29665B] text-center">
+              Create an account
+            </h1>
+
+            <p className="text-gray-400 text-sm text-center">
+              Join us and start chatting
+            </p>
+          </div>
 
           <form onSubmit={handleSubmit}>
             {/* username */}
