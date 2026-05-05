@@ -78,7 +78,9 @@ const UserProfilePanel = ({ userId, onClose }) => {
           {/* Profile photo banner */}
           <div
             className="h-20 w-full"
-            style={{ backgroundColor: "var(--color-banner)" }}
+            style={{
+              backgroundColor: profile.themeColor || "var(--color-banner)",
+            }}
           />
           <div className="px-4 pb-4">
             <div className="-mt-8 mb-3">
