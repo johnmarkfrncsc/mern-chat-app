@@ -15,10 +15,11 @@ const useSettings = () => {
   });
 
   const sections = [
-    { key: "username", label: "Change Username" },
-    { key: "password", label: "Change Password" },
-    { key: "photo", label: "Upload Profile" },
-    { key: "bio", label: "Edit Bio" },
+    { key: "username", label: "Change Username", group: "account" },
+    { key: "password", label: "Change Password", group: "account" },
+    { key: "photo", label: "Upload Profile", group: "profile" },
+    { key: "bio", label: "Edit Bio", group: "profile" },
+    { key: "theme", label: "Theme", group: "appearance" },
   ];
 
   const { updateUser } = useAuth();
