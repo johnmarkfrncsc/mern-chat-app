@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Plus } from "lucide-react";
+import { PanelRightOpen, PanelRightClose } from "lucide-react";
 import useAuth from "../../../hooks/useAuth.js";
 import useChat from "../../../hooks/useChat.js";
 import useConversation from "../../../hooks/useConversation.js";
@@ -39,12 +39,19 @@ const ConversationList = ({
       {isOpen ? (
         <div className="w-full h-screen bg-[#FFFFFF] text-black py-4 flex flex-col justify-between border-r border-[#EBEBEB]">
           <div>
-            <header className="flex justify-center md:justify-around items-center px-4">
-              <h2 className="text-xl font-bold font-serif text-[#29665B]">
-                Next chat
-              </h2>
-              <button onClick={toggleSidebar} className="hidden md:block">
-                <Plus />
+            <header className="flex justify-center md:justify-between px-4">
+              <div className="flex">
+                <h2 className="text-xl font-bold font-serif text-[#29665B] pt-1">
+                  Tsika
+                </h2>
+                <img src="logo.svg" alt="logo" className="w-9 h-8" />
+              </div>
+
+              <button
+                onClick={toggleSidebar}
+                className="hidden md:block cursor-pointer hover:text-teal-700 transition"
+              >
+                <PanelRightOpen strokeWidth={1} />
               </button>
             </header>
 
@@ -107,8 +114,11 @@ const ConversationList = ({
       ) : (
         <div className="w-20 bg-[#FFFFFF] text-black py-4 border-r border-[#EBEBEB]">
           <header className="flex justify-around">
-            <button onClick={toggleSidebar}>
-              <Plus />
+            <button
+              onClick={toggleSidebar}
+              className="cursor-pointer hover:text-teal-700 transition"
+            >
+              <PanelRightClose strokeWidth={1} />
             </button>
           </header>
           <nav className="px-4 mt-10">
