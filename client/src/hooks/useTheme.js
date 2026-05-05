@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { themes } from "../config/themes.js";
+import { changeTheme as saveTheme } from "../api/settings.js"; // ✅
 
 const applyTheme = (theme) => {
   const root = document.documentElement;
@@ -18,11 +19,17 @@ const useTheme = () => {
     applyTheme(activeTheme);
   }, [activeTheme]);
 
-  const changeTheme = (themeId) => {
+  const changeTheme = async (themeId) => {
     const theme = themes.find((t) => t.id === themeId);
     if (!theme) return;
     setActiveTheme(theme);
     localStorage.setItem("tsika-theme", themeId);
+
+    try {
+      await saveTheme(theme.accent);
+    } catch (err) {
+      console.error("Failed to save theme:", err);
+    }
   };
 
   return { activeTheme, changeTheme, themes };
