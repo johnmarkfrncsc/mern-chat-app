@@ -1,4 +1,4 @@
-const themes = [
+export const themes = [
   {
     id: "teal",
     label: "Teal",
@@ -56,5 +56,3 @@ const themes = [
     banner: "#059669",
   },
 ];
-
-export default themes;

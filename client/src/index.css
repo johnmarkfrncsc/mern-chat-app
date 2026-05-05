@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+:root {
+  --color-accent: #29665B;
+  --color-hover: #1f4f46;
+  --color-banner: #2C5B52;
+}
+
 @layer utilities {
   .scrollbar::-webkit-scrollbar {
     width: 15px;
