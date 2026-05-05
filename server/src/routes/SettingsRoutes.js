@@ -5,6 +5,7 @@ import changeUsernameController from "../controllers/user/ChangeUsernameControll
 import changePasswordController from "../controllers/user/ChangePasswordController.js";
 import uploadPhotoController from "../controllers/user/UploadPhotoController.js";
 import changeBioController from "../controllers/user/changeBioController.js";
+import changeThemeController from "../controllers/user/ChangeThemeController.js";
 
 const router = express.Router();
 
@@ -17,5 +18,6 @@ router.put(
   uploadPhotoController,
 );
 router.put("/bio", protectRoute, changeBioController);
+router.put("/theme", protectRoute, changeThemeController);
 
 export default router;

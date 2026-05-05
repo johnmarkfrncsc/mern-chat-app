@@ -3,7 +3,7 @@ import ConversationModel from "../../models/ConversationModel.js";
 
 const getUserProfile = async (targetUserId, currentUserId) => {
   const user = await UserModel.findById(targetUserId).select(
-    "username profilePhoto bio createdAt",
+    "username profilePhoto bio createdAt themeColor",
   );
   if (!user) throw new Error("User not found");
 
