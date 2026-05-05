@@ -1,11 +1,11 @@
 import express from "express";
 import protectRoute from "../middleware/protectRoute.js";
 import upload from "../middleware/multer.js";
-import changeUsernameController from "../controllers/user/ChangeUsernameController.js";
-import changePasswordController from "../controllers/user/ChangePasswordController.js";
-import uploadPhotoController from "../controllers/user/UploadPhotoController.js";
-import changeBioController from "../controllers/user/changeBioController.js";
-import changeThemeController from "../controllers/user/ChangeThemeController.js";
+import changeUsernameController from "../controllers/settings/ChangeUsernameController.js";
+import changePasswordController from "../controllers/settings/ChangePasswordController.js";
+import uploadPhotoController from "../controllers/settings/UploadPhotoController.js";
+import changeBioController from "../controllers/settings/ChangeBioController.js";
+import changeThemeController from "../controllers/settings/ChangeThemeController.js";
 
 const router = express.Router();
 
