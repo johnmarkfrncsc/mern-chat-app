@@ -6,6 +6,7 @@ import UsernameForm from "./UsernameForm.jsx";
 import PasswordForm from "./PasswordForm.jsx";
 import UploadForm from "./UploadForm.jsx";
 import BioForm from "./BioForm.jsx";
+import ThemeForm from "./ThemeForm.jsx";
 import { AuthContext } from "../../../context/authContext.jsx";
 
 const MobileSettings = ({ onClose }) => {
@@ -63,31 +64,49 @@ const MobileSettings = ({ onClose }) => {
             <p className="text-xs font-bold text-[#29665B] uppercase px-2 mb-2">
               My Account
             </p>
-
-            {sections.slice(0, 2).map((section) => (
-              <button
-                key={section.key}
-                onClick={() => setActiveSection(section.key)}
-                className="text-left text-sm text-gray-700 px-3 py-3 rounded-lg font-medium bg-white border border-[#E2E2E2] mb-2"
-              >
-                {section.label}
-              </button>
-            ))}
+            {sections
+              .filter((s) => s.group === "account")
+              .map((section) => (
+                <button
+                  key={section.key}
+                  onClick={() => setActiveSection(section.key)}
+                  className="text-left text-sm text-gray-700 px-3 py-3 rounded-lg font-medium bg-white border border-[#E2E2E2] mb-2"
+                >
+                  {section.label}
+                </button>
+              ))}
 
             {/* Profile */}
             <p className="text-xs font-bold text-[#29665B] uppercase px-2 mt-4 mb-2">
               Profile
             </p>
+            {sections
+              .filter((s) => s.group === "profile")
+              .map((section) => (
+                <button
+                  key={section.key}
+                  onClick={() => setActiveSection(section.key)}
+                  className="text-left text-sm text-gray-700 px-3 py-3 rounded-lg font-medium bg-white border border-[#E2E2E2] mb-2"
+                >
+                  {section.label}
+                </button>
+              ))}
 
-            {sections.slice(2).map((section) => (
-              <button
-                key={section.key}
-                onClick={() => setActiveSection(section.key)}
-                className="text-left text-sm text-gray-700 px-3 py-3 rounded-lg font-medium bg-white border border-[#E2E2E2] mb-2"
-              >
-                {section.label}
-              </button>
-            ))}
+            {/* Appearance */}
+            <p className="text-xs font-bold text-[#29665B] uppercase px-2 mt-4 mb-2">
+              Appearance
+            </p>
+            {sections
+              .filter((s) => s.group === "appearance")
+              .map((section) => (
+                <button
+                  key={section.key}
+                  onClick={() => setActiveSection(section.key)}
+                  className="text-left text-sm text-gray-700 px-3 py-3 rounded-lg font-medium bg-white border border-[#E2E2E2] mb-2"
+                >
+                  {section.label}
+                </button>
+              ))}
 
             {/* LOGOUT */}
             <div className="mt-auto pt-4">
@@ -145,6 +164,8 @@ const MobileSettings = ({ onClose }) => {
                 message={message}
               />
             )}
+
+            {activeSection === "theme" && <ThemeForm />}
 
             {loading && (
               <p className="text-gray-700 text-sm mt-4">Loading...</p>

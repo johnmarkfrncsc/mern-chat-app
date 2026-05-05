@@ -6,6 +6,7 @@ import UsernameForm from "./UsernameForm.jsx";
 import PasswordForm from "./PasswordForm.jsx";
 import UploadForm from "./UploadForm.jsx";
 import BioForm from "./BioForm.jsx";
+import ThemeForm from "./ThemeForm.jsx";
 import { AuthContext } from "../../../context/authContext.jsx";
 
 const DesktopSettings = ({ onClose }) => {
@@ -44,38 +45,62 @@ const DesktopSettings = ({ onClose }) => {
           <p className="text-xs font-bold text-[#29665B] uppercase px-2 mb-1">
             My Account
           </p>
-          {sections.slice(0, 2).map((section) => (
-            <button
-              key={section.key}
-              onClick={() => setActiveSection(section.key)}
-              className={`text-left px-2 py-1.5 rounded text-sm font-medium transition cursor-pointer
+          {sections
+            .filter((s) => s.group === "account")
+            .map((section) => (
+              <button
+                key={section.key}
+                onClick={() => setActiveSection(section.key)}
+                className={`text-left px-2 py-1.5 rounded text-sm font-medium transition cursor-pointer
             ${
               activeSection === section.key
                 ? "bg-[#E2E2E2] text-gray-800"
                 : "text-gray-700 hover:bg-[#EBEBEB] hover:text-gray-800"
             }`}
-            >
-              {section.label}
-            </button>
-          ))}
+              >
+                {section.label}
+              </button>
+            ))}
 
           <p className="text-xs font-bold text-[#29665B] uppercase px-2 mt-4 mb-1">
             Profile
           </p>
-          {sections.slice(2).map((section) => (
-            <button
-              key={section.key}
-              onClick={() => setActiveSection(section.key)}
-              className={`text-left px-2 py-1.5 rounded text-sm font-medium transition cursor-pointer
+          {sections
+            .filter((s) => s.group === "profile")
+            .map((section) => (
+              <button
+                key={section.key}
+                onClick={() => setActiveSection(section.key)}
+                className={`text-left px-2 py-1.5 rounded text-sm font-medium transition cursor-pointer
             ${
               activeSection === section.key
                 ? "bg-[#E2E2E2] text-gray-800"
                 : "text-gray-700 hover:bg-[#EBEBEB] hover:text-gray-800"
             }`}
-            >
-              {section.label}
-            </button>
-          ))}
+              >
+                {section.label}
+              </button>
+            ))}
+
+          <p className="text-xs font-bold text-[#29665B] uppercase px-2 mt-4 mb-1">
+            Appearance
+          </p>
+          {sections
+            .filter((s) => s.group === "appearance")
+            .map((section) => (
+              <button
+                key={section.key}
+                onClick={() => setActiveSection(section.key)}
+                className={`text-left px-2 py-1.5 rounded text-sm font-medium transition cursor-pointer
+            ${
+              activeSection === section.key
+                ? "bg-[#E2E2E2] text-gray-800"
+                : "text-gray-700 hover:bg-[#EBEBEB] hover:text-gray-800"
+            }`}
+              >
+                {section.label}
+              </button>
+            ))}
 
           <div className="mt-auto">
             <button
@@ -142,6 +167,8 @@ const DesktopSettings = ({ onClose }) => {
               message={message}
             />
           )}
+
+          {activeSection === "theme" && <ThemeForm />}
 
           {/* Message */}
           {loading && <p className="text-gray-700 text-sm mt-4">Loading...</p>}
