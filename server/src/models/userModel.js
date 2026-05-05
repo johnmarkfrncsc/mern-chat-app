@@ -43,6 +43,10 @@ const UserModel = new mongoose.Schema(
       default: "",
       maxlength: 190,
     },
+    themeColor: {
+      type: String,
+      default: "#2C5B52",
+    },
   },
   {
     timestamps: true,
