@@ -38,7 +38,10 @@ const ChatHeader = ({
       </div>
 
       <div className="flex flex-col flex-1">
-        <h3 className="text-[#2C5B52] text-lg font-semibold tracking-wide leading-tight">
+        <h3
+          className="text-lg font-semibold tracking-wide leading-tight"
+          style={{ color: "var(--color-accent)" }}
+        >
           {selectedConversation.username}
         </h3>
         <span className="text-xs text-gray-400">
@@ -48,8 +51,16 @@ const ChatHeader = ({
 
       <button
         onClick={() => setShowProfile((prev) => !prev)}
-        className={`p-1.5 rounded-md transition cursor-pointer
-          ${showProfile ? "bg-[#EFEFEF] text-[#2C5B52]" : "text-gray-400 hover:text-[#2C5B52] hover:bg-[#EFEFEF]"}`}
+        style={
+          showProfile
+            ? { color: "var(--color-accent)", backgroundColor: "#EFEFEF" }
+            : {}
+        }
+        className="p-1.5 rounded-md transition cursor-pointer text-gray-400"
+        onMouseEnter={(e) =>
+          (e.currentTarget.style.color = "var(--color-accent)")
+        }
+        onMouseLeave={(e) => !showProfile && (e.currentTarget.style.color = "")}
       >
         <Ellipsis size={20} />
       </button>

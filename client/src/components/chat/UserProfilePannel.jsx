@@ -76,7 +76,10 @@ const UserProfilePanel = ({ userId, onClose }) => {
       ) : (
         <div className="flex-1 overflow-y-auto">
           {/* Profile photo banner */}
-          <div className="bg-[#2C5B52] h-20 w-full" />
+          <div
+            className="h-20 w-full"
+            style={{ backgroundColor: "var(--color-banner)" }}
+          />
           <div className="px-4 pb-4">
             <div className="-mt-8 mb-3">
               {profile.profilePhoto ? (
