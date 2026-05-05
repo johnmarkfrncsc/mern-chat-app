@@ -29,4 +29,9 @@ const changeBio = async (bio) => {
   return response.data;
 };
 
-export { changePassword, changeUsername, uploadPhoto, changeBio };
+const changeTheme = async (themeColor) => {
+  const response = await api.put("/settings/theme", { themeColor });
+  return response.data;
+};
+
+export { changePassword, changeUsername, uploadPhoto, changeBio, changeTheme };
