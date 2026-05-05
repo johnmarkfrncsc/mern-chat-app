@@ -6,10 +6,11 @@ const MessageSkeleton = ({ isOwn }) => (
     className={`flex ${isOwn ? "justify-end" : "justify-start"} animate-pulse`}
   >
     <div
-      className={`h-8 rounded-4xl w-40 pl-3 pr-2.5 py-1.5 ${isOwn ? "rounded-br-md" : "bg-gray-200 rounded-bl-md"}`}
-      style={
-        isOwn ? { backgroundColor: "var(--color-accent)", opacity: 0.3 } : {}
-      }
+      className={`h-8 rounded-4xl w-40 pl-3 pr-2.5 py-1.5 ${
+        isOwn
+          ? "bg-(--color-accent) opacity-30 rounded-br-md"
+          : "bg-gray-200 rounded-bl-md"
+      }`}
     />
   </div>
 );
@@ -57,18 +58,9 @@ const MessageList = ({ messages, loading }) => {
               <div
                 className={`max-w-xs pl-3 pr-2.5 py-1.5 shadow text-sm text-center wrap-break-word whitespace-pre-wrap ${
                   isOwn
-                    ? "text-right text-white rounded-4xl rounded-br-md shadow-sm"
+                    ? "bg-(--color-accent) border border-(--color-hover) text-right text-white rounded-4xl rounded-br-md shadow-sm"
                     : "bg-[#FAFAFA] text-left border border-[#E8EAEC] text-gray-700 rounded-4xl rounded-bl-md shadow-sm"
                 }`}
-                style={
-                  isOwn
-                    ? {
-                        backgroundColor: "var(--color-accent)",
-                        borderColor: "var(--color-hover)",
-                        border: "1px solid var(--color-hover)",
-                      }
-                    : {}
-                }
               >
                 <div>{message.text}</div>
               </div>

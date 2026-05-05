@@ -41,10 +41,7 @@ const ConversationList = ({
           <div>
             <header className="flex justify-center md:justify-between px-4">
               <div className="flex">
-                <h2
-                  className="text-xl font-bold font-serif"
-                  style={{ color: "var(--color-accent)" }}
-                >
+                <h2 className="text-xl font-bold font-serif text-(--color-accent)">
                   Tsika
                 </h2>
                 <img src="logo.svg" alt="logo" className="w-9 h-8" />

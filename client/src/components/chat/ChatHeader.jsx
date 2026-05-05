@@ -51,16 +51,9 @@ const ChatHeader = ({
 
       <button
         onClick={() => setShowProfile((prev) => !prev)}
-        style={
-          showProfile
-            ? { color: "var(--color-accent)", backgroundColor: "#EFEFEF" }
-            : {}
-        }
-        className="p-1.5 rounded-md transition cursor-pointer text-gray-400"
-        onMouseEnter={(e) =>
-          (e.currentTarget.style.color = "var(--color-accent)")
-        }
-        onMouseLeave={(e) => !showProfile && (e.currentTarget.style.color = "")}
+        className={`p-1.5 rounded-md transition cursor-pointer
+    hover:text-(--color-accent) hover:bg-[#EFEFEF]
+    ${showProfile ? "text-(--color-accent) bg-[#EFEFEF]" : "text-gray-400"}`}
       >
         <Ellipsis size={20} />
       </button>
