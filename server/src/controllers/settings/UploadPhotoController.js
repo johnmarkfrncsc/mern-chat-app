@@ -1,4 +1,4 @@
-import uploadPhoto from "../../services/user/UploadPhotoService.js";
+import uploadPhoto from "../../services/settings/UploadPhotoService.js";
 import { getIO, userSocketMap } from "../../config/socket.js";
 
 const uploadPhotoController = async (req, res) => {

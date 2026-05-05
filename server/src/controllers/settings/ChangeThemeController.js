@@ -1,4 +1,4 @@
-import changeTheme from "../../services/user/ChangeThemeService.js";
+import changeTheme from "../../services/settings/ChangeThemeService.js";
 
 const changeThemeController = async (req, res) => {
   try {

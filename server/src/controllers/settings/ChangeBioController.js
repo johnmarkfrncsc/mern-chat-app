@@ -1,4 +1,4 @@
-import changeBio from "../../services/user/ChangeBio.js";
+import changeBio from "../../services/settings/ChangeBio.js";
 
 const changeBioController = async (req, res) => {
   try {

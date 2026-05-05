@@ -1,4 +1,4 @@
-import changeUsername from "../../services/user/ChangeUsernameService.js";
+import changeUsername from "../../services/settings/ChangeUsernameService.js";
 
 const changeUsernameController = async (req, res) => {
   try {

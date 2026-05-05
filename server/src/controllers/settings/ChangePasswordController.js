@@ -1,4 +1,4 @@
-import changePassword from "../../services/user/ChangePasswordService.js";
+import changePassword from "../../services/settings/ChangePasswordService.js";
 
 const changePasswordController = async (req, res) => {
   try {
