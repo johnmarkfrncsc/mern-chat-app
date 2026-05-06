@@ -1,4 +1,4 @@
-import searchUser from "../../services/user/SearchUser.js";
+import searchUser from "../../services/User/SearchUser.js";
 
 const searchUserController = async (req, res) => {
   try {

@@ -1,4 +1,4 @@
-import getUserConversation from "../../services/message/getUserConversation.js";
+import getUserConversation from "../../services/Message/getUserConversation.js";
 
 const getUserConversationsController = async (req, res) => {
   try {

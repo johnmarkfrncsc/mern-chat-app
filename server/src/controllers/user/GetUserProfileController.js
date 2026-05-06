@@ -1,4 +1,4 @@
-import getUserProfile from "../../services/user/GetUserProfile.js";
+import getUserProfile from "../../services/User/GetUserProfile.js";
 
 const getUserProfileController = async (req, res) => {
   try {

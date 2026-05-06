@@ -1,5 +1,5 @@
 import { getIO, userSocketMap } from "../../config/socket.js";
-import createConversation from "../../services/message/createConversation.js";
+import createConversation from "../../services/Message/createConversation.js";
 
 const createConversationController = async (req, res) => {
   try {

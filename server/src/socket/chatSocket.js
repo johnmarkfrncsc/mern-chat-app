@@ -1,4 +1,4 @@
-import sendMessage from "../services/message/sendMessage.js";
+import sendMessage from "../services/Message/sendMessage.js";
 
 const chatSocket = (io) => {
   const onlineUsers = new Map();

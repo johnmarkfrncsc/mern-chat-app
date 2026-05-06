@@ -1,4 +1,4 @@
-import { comparePassword } from "../../utils/hashPassword.js";
+import { comparePassword } from "../../utils/HashPassword.js";
 import { generateToken } from "../../utils/JwtToken.js";
 import UserModel from "../../models/UserModel.js";
 

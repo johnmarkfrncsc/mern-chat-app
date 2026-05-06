@@ -1,4 +1,4 @@
-import getMessage from "../../services/message/getMessages.js";
+import getMessage from "../../services/Message/getMessages.js";
 
 const getMessageController = async (req, res) => {
   try {

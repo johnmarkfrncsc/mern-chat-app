@@ -1,5 +1,5 @@
 import UserModel from "../../models/UserModel.js";
-import { hashPassword, comparePassword } from "../../utils/hashPassword.js";
+import { hashPassword, comparePassword } from "../../utils/HashPassword.js";
 
 const Five_Days = 5 * 24 * 60 * 60 * 1000;
 
