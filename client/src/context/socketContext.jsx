@@ -12,7 +12,7 @@ const SocketProvider = ({ children }) => {
   useEffect(() => {
     if (!user?._id) return;
 
-    const newSocket = io("http://localhost:8080", {
+    const newSocket = io("https://tsika.skwtr.com", {
       auth: {
         userId: user._id,
         username: user.username,
