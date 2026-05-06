@@ -100,8 +100,12 @@ const Chat = () => {
           {selectedConversation?.id ? (
             <ChatBox conversationId={selectedConversation?.id} />
           ) : (
-            <div className="flex-1 flex items-center h-screen justify-center text-black">
-              Select a conversation to start chatting
+            <div className="flex flex-col justify-center items-center h-screen text-black pb-20">
+              <img src="logo.svg" alt="logo" className="w-12 h-11 mb-2" />
+              <h1 className="text-lg tracking-wide">Welcome to Tsika!</h1>
+              <h2 className="text-md text-gray-600 tracking-wide mt-1">
+                Search for someone or select a conversation to start chatting.
+              </h2>
             </div>
           )}
         </div>

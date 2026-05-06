@@ -40,12 +40,9 @@ const ConversationList = ({
         <div className="w-full h-screen bg-[#FFFFFF] text-black py-4 flex flex-col justify-between border-r border-[#EBEBEB]">
           <div>
             <header className="flex justify-center md:justify-between px-4">
-              <div className="flex">
-                <h2 className="text-xl font-bold font-serif text-(--color-accent)">
-                  Tsika
-                </h2>
-                <img src="logo.svg" alt="logo" className="w-9 h-8" />
-              </div>
+              <h2 className="text-xl font-bold font-serif text-(--color-accent)">
+                Tsika
+              </h2>
 
               <button
                 onClick={toggleSidebar}
