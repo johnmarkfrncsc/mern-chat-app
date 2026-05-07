@@ -163,12 +163,21 @@ tsika/
 
 ## Screenshots
 
-<img width="1896" height="902" alt="image" src="https://github.com/user-attachments/assets/65eb8149-ad30-46ee-8fc4-dc80dcb517a3" />
+<p align="center">
+  <img width="1896" height="902" alt="image" src="https://github.com/user-attachments/assets/65eb8149-ad30-46ee-8fc4-dc80dcb517a3" />
+</p>
 
-<img width="951" height="797" alt="image" src="https://github.com/user-attachments/assets/7a4b3b74-fda9-4f72-8081-5982a83765dd" />
+<br />
 
-<img width="523" height="795" alt="image" src="https://github.com/user-attachments/assets/1e7d77c3-436b-412f-9e62-7261f7509891" />
+<p align="center">
+  <img width="951" height="797" alt="image" src="https://github.com/user-attachments/assets/7a4b3b74-fda9-4f72-8081-5982a83765dd" />
+</p>
 
+<br />
+
+<p align="center">
+  <img width="523" height="795" alt="image" src="https://github.com/user-attachments/assets/1e7d77c3-436b-412f-9e62-7261f7509891" />
+</p>
 
 
 
