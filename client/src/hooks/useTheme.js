@@ -1,18 +1,22 @@
 import { useState, useEffect } from "react";
 import { themes } from "../config/themes.js";
-import { changeTheme as saveTheme } from "../api/settings.js"; // ✅
+import { changeTheme as saveTheme } from "../api/settings.js";
 
 const applyTheme = (theme) => {
   const root = document.documentElement;
   root.style.setProperty("--color-accent", theme.accent);
   root.style.setProperty("--color-hover", theme.hover);
   root.style.setProperty("--color-banner", theme.banner);
+  root.style.setProperty("--color-bg", theme.bg);
+  root.style.setProperty("--color-other-bubble", theme.otherBubble);
 };
 
 const useTheme = () => {
   const [activeTheme, setActiveTheme] = useState(() => {
     const saved = localStorage.getItem("tsika-theme");
-    return themes.find((t) => t.id === saved) || themes[0];
+    const theme = themes.find((t) => t.id === saved) || themes[0];
+    applyTheme(theme);
+    return theme;
   });
 
   useEffect(() => {

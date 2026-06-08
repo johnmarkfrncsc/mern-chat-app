@@ -1,7 +1,7 @@
-import useTheme from "../../../hooks/useTheme.js";
+import { useThemeContext } from "../../../context/themeContext.jsx";
 
 const ThemeForm = () => {
-  const { activeTheme, changeTheme, themes } = useTheme();
+  const { activeTheme, changeTheme, themes } = useThemeContext();
 
   return (
     <div className="flex flex-col gap-4">
