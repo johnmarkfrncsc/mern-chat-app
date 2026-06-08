@@ -4,6 +4,8 @@
   --color-accent: #29665B;
   --color-hover: #1f4f46;
   --color-banner: #2C5B52;
+  --color-bg: #f0faf8;
+  --color-other-bubble: #d0ece8;
 }
 
 @layer utilities {
@@ -14,16 +16,10 @@
 
   .scrollbar::-webkit-scrollbar-track {
     border-radius: 100vh;
-    background: #FAFAFA;
   }
 
   .scrollbar::-webkit-scrollbar-thumb {
-    background: #E2E2E2;
     border-radius: 100vh;
     border: 3px solid #f6f7ed;
-  }
-
-  .scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #1A213D;
   }
 }
