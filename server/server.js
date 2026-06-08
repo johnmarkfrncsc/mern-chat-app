@@ -9,7 +9,7 @@ import registerSocketEvents from "./src/socket/index.js";
 dotenv.config();
 
 // port
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8083;
 
 // server
 const server = http.createServer(app);
@@ -36,7 +36,7 @@ connectMONGODB()
 TERMMINAL : 
 
 Connected to MONGODB successfully
-Server running on http://localhost:8080
+Server running on http://localhost:8083
 a user connected NjxwuIMy16DPCgF7AAAB
 a user joined room : 69dc7d1a78918a27e46fae95
 user disconnected: NjxwuIMy16DPCgF7AAAB
