@@ -11,8 +11,8 @@ const SearchUser = ({
     <div ref={containerRef} className="w-full max-w-xl mt-10 px-3">
       {/* Search Bar */}
       <div
-        className="flex items-center bg-[#F6F6F6] border border-[#E9E9E9] rounded-xl px-3 py-2
-               focus-within:border-[#434345]"
+        className="flex items-center border border-[#E9E9E9] rounded-xl px-3 py-2 focus-within:border-[#434345]"
+        style={{ backgroundColor: "var(--color-bg)" }}
       >
         <Search className="text-[#29665B] mr-2" size={18} />
 
@@ -27,7 +27,7 @@ const SearchUser = ({
 
       {/* Results */}
       {searchQuery && (
-        <div className="mt-2 bg-[#FFFFFF] border border-[#E4E4E4] rounded-lg overflow-hidden">
+        <div className="mt-2 border border-[#E4E4E4] rounded-lg overflow-hidden">
           {searchResult.length > 0 ? (
             searchResult.map((user) => (
               <div

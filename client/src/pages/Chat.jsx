@@ -66,6 +66,7 @@ const Chat = () => {
   return (
     <div
       className="h-screen flex overflow-hidden"
+      style={{ backgroundColor: "var(--color-bg)" }}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -81,9 +82,13 @@ const Chat = () => {
 
       {/* Chat area */}
       <div
-        className={`flex flex-col flex-1 bg-[#FFFFFF] min-w-0 ${mobileView === "list" ? "hidden" : "flex"} md:flex`}
+        className={`flex flex-col flex-1 min-w-0 ${mobileView === "list" ? "hidden" : "flex"} md:flex`}
+        style={{ backgroundColor: "var(--color-bg)" }}
       >
-        <nav className="bg-[#FAFAFA] border-b border-[#E8E8E8] p-4 flex items-center gap-2">
+        <nav
+          className="border-b border-[#E8E8E8] p-4 flex items-center gap-2"
+          style={{ backgroundColor: "var(--color-bg)" }}
+        >
           <ChatHeader
             selectedConversation={selectedConversation}
             timeAgo={timeAgo}

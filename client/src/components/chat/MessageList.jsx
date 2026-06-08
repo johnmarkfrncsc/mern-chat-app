@@ -7,10 +7,13 @@ const MessageSkeleton = ({ isOwn }) => (
   >
     <div
       className={`h-8 rounded-4xl w-40 pl-3 pr-2.5 py-1.5 ${
-        isOwn
-          ? "bg-(--color-accent) opacity-30 rounded-br-md"
-          : "bg-gray-200 rounded-bl-md"
+        isOwn ? "bg-(--color-accent) opacity-30 rounded-br-md" : "rounded-bl-md"
       }`}
+      style={
+        !isOwn
+          ? { backgroundColor: "var(--color-other-bubble)", opacity: 0.5 }
+          : {}
+      }
     />
   </div>
 );
@@ -59,8 +62,16 @@ const MessageList = ({ messages, loading }) => {
                 className={`max-w-xs pl-3 pr-2.5 py-1.5 shadow text-sm text-center wrap-break-word whitespace-pre-wrap ${
                   isOwn
                     ? "bg-(--color-accent) border border-(--color-hover) text-right text-white rounded-4xl rounded-br-md shadow-sm"
-                    : "bg-[#FAFAFA] text-left border border-[#E8EAEC] text-gray-700 rounded-4xl rounded-bl-md shadow-sm"
+                    : "text-left text-gray-700 rounded-4xl rounded-bl-md shadow-sm"
                 }`}
+                style={
+                  !isOwn
+                    ? {
+                        backgroundColor: "var(--color-other-bubble)",
+                        borderColor: "var(--color-other-bubble)",
+                      }
+                    : {}
+                }
               >
                 <div>{message.text}</div>
               </div>

@@ -32,7 +32,10 @@ const MobileSettings = ({ onClose }) => {
   return (
     <div className="fixed inset-0 bg-black/70 z-50 flex flex-col">
       {/* HEADER */}
-      <div className="flex items-center justify-between p-4 bg-[#FAFAFA] border-b border-[#E2E2E2]">
+      <div
+        className="flex items-center justify-between p-4 border-b border-[#E2E2E2]"
+        style={{ backgroundColor: "var(--color-bg)" }}
+      >
         {activeSection ? (
           <button
             onClick={() => setActiveSection(null)}
@@ -56,12 +59,18 @@ const MobileSettings = ({ onClose }) => {
       </div>
 
       {/* BODY */}
-      <div className="flex-1 bg-[#FAFAFA] overflow-y-auto p-4 flex flex-col">
+      <div
+        className="flex-1 overflow-y-auto p-4 flex flex-col"
+        style={{ backgroundColor: "var(--color-bg)" }}
+      >
         {/* LIST VIEW */}
         {!activeSection && (
           <>
             {/* My Account */}
-            <p className="text-xs font-bold text-[#29665B] uppercase px-2 mb-2">
+            <p
+              className="text-xs font-bold uppercase px-2 mb-2"
+              style={{ color: "var(--color-accent)" }}
+            >
               My Account
             </p>
             {sections
@@ -70,14 +79,18 @@ const MobileSettings = ({ onClose }) => {
                 <button
                   key={section.key}
                   onClick={() => setActiveSection(section.key)}
-                  className="text-left text-sm text-gray-700 px-3 py-3 rounded-lg font-medium bg-white border border-[#E2E2E2] mb-2"
+                  className="text-left text-sm text-gray-700 px-3 py-3 rounded-lg font-medium border border-[#E2E2E2] mb-2"
+                  style={{ backgroundColor: "var(--color-bg)" }}
                 >
                   {section.label}
                 </button>
               ))}
 
             {/* Profile */}
-            <p className="text-xs font-bold text-[#29665B] uppercase px-2 mt-4 mb-2">
+            <p
+              className="text-xs font-bold uppercase px-2 mt-4 mb-2"
+              style={{ color: "var(--color-accent)" }}
+            >
               Profile
             </p>
             {sections
@@ -86,14 +99,18 @@ const MobileSettings = ({ onClose }) => {
                 <button
                   key={section.key}
                   onClick={() => setActiveSection(section.key)}
-                  className="text-left text-sm text-gray-700 px-3 py-3 rounded-lg font-medium bg-white border border-[#E2E2E2] mb-2"
+                  className="text-left text-sm text-gray-700 px-3 py-3 rounded-lg font-medium border border-[#E2E2E2] mb-2"
+                  style={{ backgroundColor: "var(--color-bg)" }}
                 >
                   {section.label}
                 </button>
               ))}
 
             {/* Appearance */}
-            <p className="text-xs font-bold text-[#29665B] uppercase px-2 mt-4 mb-2">
+            <p
+              className="text-xs font-bold uppercase px-2 mt-4 mb-2"
+              style={{ color: "var(--color-accent)" }}
+            >
               Appearance
             </p>
             {sections
@@ -102,7 +119,8 @@ const MobileSettings = ({ onClose }) => {
                 <button
                   key={section.key}
                   onClick={() => setActiveSection(section.key)}
-                  className="text-left text-sm text-gray-700 px-3 py-3 rounded-lg font-medium bg-white border border-[#E2E2E2] mb-2"
+                  className="text-left text-sm text-gray-700 px-3 py-3 rounded-lg font-medium border border-[#E2E2E2] mb-2"
+                  style={{ backgroundColor: "var(--color-bg)" }}
                 >
                   {section.label}
                 </button>
@@ -113,8 +131,9 @@ const MobileSettings = ({ onClose }) => {
               <button
                 onClick={handleLogout}
                 className="w-full px-4 py-3 rounded-lg text-sm font-medium
-                  bg-[#FAFAFA] text-gray-700 border border-[#dfdddd]
+                  text-gray-700 border border-[#dfdddd]
                   hover:border-red-500/50"
+                style={{ backgroundColor: "var(--color-bg)" }}
               >
                 Log out
               </button>

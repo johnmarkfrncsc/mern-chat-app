@@ -8,7 +8,10 @@ const UserCard = ({ onSettingsClick }) => {
   const hasPhoto = user?.profilePhoto && user?.profilePhoto !== "";
 
   return (
-    <div className="bg-[#E2E2E2] flex items-center justify-between w-full px-3 py-2 rounded-2xl ">
+    <div
+      className="flex items-center justify-between w-full px-3 py-2 rounded-2xl"
+      style={{ backgroundColor: "var(--color-other-bubble)" }}
+    >
       <div className="flex flex-1 items-center gap-2">
         {hasPhoto ? (
           <img
