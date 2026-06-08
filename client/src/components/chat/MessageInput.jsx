@@ -15,7 +15,7 @@ const MessageInput = ({ onSend }) => {
   };
 
   return (
-    <div className="bg-[#FFFFFF] p-2">
+    <div className="p-2">
       <div className="relative">
         <input
           value={text}

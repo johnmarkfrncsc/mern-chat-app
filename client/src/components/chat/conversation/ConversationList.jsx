@@ -37,7 +37,7 @@ const ConversationList = ({
   return (
     <>
       {isOpen ? (
-        <div className="w-full h-screen bg-[#FFFFFF] text-black py-4 flex flex-col justify-between border-r border-[#EBEBEB]">
+        <div className="w-full h-screen text-black py-4 flex flex-col justify-between border-r border-[#EBEBEB] bg-[#FFFFFF]">
           <div>
             <header className="flex justify-center md:justify-between px-4">
               <h2 className="text-xl font-bold font-serif text-(--color-accent)">
@@ -109,7 +109,10 @@ const ConversationList = ({
           </div>
         </div>
       ) : (
-        <div className="w-20 bg-[#FFFFFF] text-black py-4 border-r border-[#EBEBEB]">
+        <div
+          className="w-20 text-black py-4 border-r border-[#EBEBEB]"
+          style={{ backgroundColor: "var(--color-bg)" }}
+        >
           <header className="flex justify-around">
             <button
               onClick={toggleSidebar}
